@@ -1,0 +1,2201 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Pharma Choke Point | Strategic Supply Chain Intelligence Suite</title>
+    <meta name="description" content="Strategic assessment and interactive biosecurity intelligence suite analyzing U.S.-China pharmaceutical supply chain interdependence, upstream vulnerabilities, and policy countermeasures." />
+    <meta property="og:title" content="The Pharma Choke Point | Strategic Biosecurity Suite" />
+    <meta property="og:description" content="Interactive CFR Strategic Analysis: Amoxicillin, Heparin, Norepinephrine, & Acetaminophen supply chain vulnerabilities and reshoring roadmap." />
+    <meta property="og:type" content="website" />
+
+    <!-- External CDN Libraries as requested -->
+    <!-- 1. Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              choke: {
+                50: '#fff1f2',
+                500: '#f43f5e',
+                600: '#e11d48',
+                700: '#be123c',
+                900: '#881337',
+              },
+              resilient: {
+                50: '#ecfdf5',
+                500: '#10b981',
+                600: '#059669',
+                700: '#047857',
+              },
+              warning: {
+                500: '#f59e0b',
+                600: '#d97706',
+              },
+              intel: {
+                500: '#06b6d4',
+                600: '#0891b2',
+              }
+            },
+            fontFamily: {
+              mono: ['"JetBrains Mono"', 'monospace'],
+              sans: ['"Plus Jakarta Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            }
+          }
+        }
+      }
+    </script>
+
+    <!-- 2. Mermaid.js -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+
+    <!-- 3. Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- 4. FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+      body {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        background-color: #030712;
+        color: #f3f4f6;
+      }
+      .font-mono-code {
+        font-family: 'JetBrains Mono', monospace;
+      }
+      /* Custom Scrollbars */
+      ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #0b0f19;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #1f2937;
+        border-radius: 3px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #374151;
+      }
+      .glow-crimson {
+        box-shadow: 0 0 20px -3px rgba(244, 63, 94, 0.25);
+      }
+      .glow-emerald {
+        box-shadow: 0 0 20px -3px rgba(16, 185, 129, 0.25);
+      }
+      .glow-cyan {
+        box-shadow: 0 0 20px -3px rgba(6, 182, 212, 0.25);
+      }
+      .glow-gold {
+        box-shadow: 0 0 20px -3px rgba(245, 158, 11, 0.25);
+      }
+      /* Mermaid Styling Customizations */
+      .mermaid svg {
+        max-width: 100% !important;
+        height: auto !important;
+      }
+      .mermaid .node rect,
+      .mermaid .node circle,
+      .mermaid .node polygon {
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+      .mermaid .node:hover rect,
+      .mermaid .node:hover circle,
+      .mermaid .node:hover polygon {
+        filter: brightness(1.25);
+        stroke-width: 3px !important;
+      }
+      @media print {
+        aside, header, #quickSearchModal, .mindmap-filter-btn, .node-chip, #timeline-play-btn {
+          display: none !important;
+        }
+        body {
+          background: #ffffff !important;
+          color: #000000 !important;
+        }
+        .view-panel {
+          display: block !important;
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col md:flex-row antialiased overflow-x-hidden selection:bg-rose-500/30 selection:text-rose-200">
+
+    <!-- SIDEBAR NAVIGATION -->
+    <aside class="w-full md:w-72 bg-slate-900/90 border-b md:border-b-0 md:border-r border-slate-800 flex-shrink-0 flex flex-col justify-between backdrop-blur-md z-40">
+      <div>
+        <!-- App Brand Header -->
+        <div class="p-5 border-b border-slate-800/80">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-rose-600 via-rose-500 to-amber-500 flex items-center justify-center shadow-lg shadow-rose-950/60 ring-1 ring-rose-400/30">
+              <i class="fa-solid fa-biohazard text-white text-lg"></i>
+            </div>
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="text-xs font-mono font-bold tracking-widest text-rose-400 uppercase">CFR Intel Suite</span>
+                <span class="px-1.5 py-0.5 text-[10px] font-mono font-semibold bg-rose-500/10 text-rose-400 border border-rose-500/30 rounded">ARCHETYPE 1</span>
+              </div>
+              <h1 class="text-sm font-bold text-white tracking-tight leading-tight mt-0.5">THE PHARMA CHOKE POINT</h1>
+            </div>
+          </div>
+          <p class="text-[11px] text-slate-400 mt-2 font-mono leading-relaxed border-l-2 border-slate-700 pl-2">
+            October 2026 Strategic Assessment & Policy Working Paper
+          </p>
+        </div>
+
+        <!-- Navigation Links -->
+        <nav class="p-3 space-y-1">
+          <button onclick="switchView('mindmap')" id="nav-btn-mindmap" class="nav-item w-full flex items-center gap-3 px-3.5 py-3 rounded-lg text-sm font-medium transition-all duration-200 text-slate-300 hover:text-white hover:bg-slate-800/60 group">
+            <div class="w-8 h-8 rounded-lg bg-slate-800 group-hover:bg-cyan-500/20 text-slate-400 group-hover:text-cyan-400 flex items-center justify-center transition-colors">
+              <i class="fa-solid fa-diagram-project text-xs"></i>
+            </div>
+            <div class="text-left flex-1">
+              <div class="font-semibold text-xs tracking-wide">VIEW 1</div>
+              <div class="text-[13px] text-slate-300 group-hover:text-white">Supply Chain Mind Map</div>
+            </div>
+            <span class="opacity-0 group-hover:opacity-100 text-xs text-slate-500 transition-opacity"><i class="fa-solid fa-chevron-right"></i></span>
+          </button>
+
+          <button onclick="switchView('dashboard')" id="nav-btn-dashboard" class="nav-item w-full flex items-center gap-3 px-3.5 py-3 rounded-lg text-sm font-medium transition-all duration-200 text-slate-300 hover:text-white hover:bg-slate-800/60 group">
+            <div class="w-8 h-8 rounded-lg bg-slate-800 group-hover:bg-rose-500/20 text-slate-400 group-hover:text-rose-400 flex items-center justify-center transition-colors">
+              <i class="fa-solid fa-chart-pie text-xs"></i>
+            </div>
+            <div class="text-left flex-1">
+              <div class="font-semibold text-xs tracking-wide">VIEW 2</div>
+              <div class="text-[13px] text-slate-300 group-hover:text-white">Geopolitical Risk Dashboard</div>
+            </div>
+            <span class="opacity-0 group-hover:opacity-100 text-xs text-slate-500 transition-opacity"><i class="fa-solid fa-chevron-right"></i></span>
+          </button>
+
+          <button onclick="switchView('slidedeck')" id="nav-btn-slidedeck" class="nav-item w-full flex items-center gap-3 px-3.5 py-3 rounded-lg text-sm font-medium transition-all duration-200 text-slate-300 hover:text-white hover:bg-slate-800/60 group">
+            <div class="w-8 h-8 rounded-lg bg-slate-800 group-hover:bg-amber-500/20 text-slate-400 group-hover:text-amber-400 flex items-center justify-center transition-colors">
+              <i class="fa-solid fa-person-chalkboard text-xs"></i>
+            </div>
+            <div class="text-left flex-1">
+              <div class="font-semibold text-xs tracking-wide">VIEW 3</div>
+              <div class="text-[13px] text-slate-300 group-hover:text-white">Executive Slide Deck</div>
+            </div>
+            <span class="opacity-0 group-hover:opacity-100 text-xs text-slate-500 transition-opacity"><i class="fa-solid fa-chevron-right"></i></span>
+          </button>
+
+          <button onclick="switchView('reshoring')" id="nav-btn-reshoring" class="nav-item w-full flex items-center gap-3 px-3.5 py-3 rounded-lg text-sm font-medium transition-all duration-200 text-slate-300 hover:text-white hover:bg-slate-800/60 group">
+            <div class="w-8 h-8 rounded-lg bg-slate-800 group-hover:bg-emerald-500/20 text-slate-400 group-hover:text-emerald-400 flex items-center justify-center transition-colors">
+              <i class="fa-solid fa-shield-virus text-xs"></i>
+            </div>
+            <div class="text-left flex-1">
+              <div class="font-semibold text-xs tracking-wide">VIEW 4</div>
+              <div class="text-[13px] text-slate-300 group-hover:text-white">Reshoring Policy Roadmap</div>
+            </div>
+            <span class="opacity-0 group-hover:opacity-100 text-xs text-slate-500 transition-opacity"><i class="fa-solid fa-chevron-right"></i></span>
+          </button>
+        </nav>
+
+        <!-- Target Medicines Quick-Status Watch -->
+        <div class="px-4 py-3 mx-3 mt-2 rounded-xl bg-slate-950/70 border border-slate-800/80">
+          <div class="text-[11px] font-mono text-slate-400 uppercase font-semibold flex items-center justify-between mb-2">
+            <span>Critical Target Scope</span>
+            <span class="text-rose-400 text-[10px]">High Threat</span>
+          </div>
+          <div class="space-y-1.5 text-xs">
+            <div class="flex items-center justify-between py-1 border-b border-slate-800/50">
+              <span class="text-slate-300 flex items-center gap-1.5 font-medium"><i class="fa-solid fa-capsules text-[10px] text-amber-400"></i> Amoxicillin</span>
+              <span class="font-mono text-rose-400 font-bold text-[11px]">94% 6-APA</span>
+            </div>
+            <div class="flex items-center justify-between py-1 border-b border-slate-800/50">
+              <span class="text-slate-300 flex items-center gap-1.5 font-medium"><i class="fa-solid fa-syringe text-[10px] text-rose-400"></i> Heparin</span>
+              <span class="font-mono text-rose-400 font-bold text-[11px]">75% Mucosa</span>
+            </div>
+            <div class="flex items-center justify-between py-1 border-b border-slate-800/50">
+              <span class="text-slate-300 flex items-center gap-1.5 font-medium"><i class="fa-solid fa-heart-pulse text-[10px] text-cyan-400"></i> Norepinephrine</span>
+              <span class="font-mono text-rose-400 font-bold text-[11px]">High (Precursors)</span>
+            </div>
+            <div class="flex items-center justify-between py-1">
+              <span class="text-slate-300 flex items-center gap-1.5 font-medium"><i class="fa-solid fa-tablets text-[10px] text-slate-400"></i> Acetaminophen</span>
+              <span class="font-mono text-rose-400 font-bold text-[11px]">Dominant PAP</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer Info -->
+      <div class="p-4 border-t border-slate-800 text-[11px] text-slate-500 font-mono">
+        <div class="flex items-center justify-between">
+          <span>CLASSIFICATION</span>
+          <span class="text-slate-400 font-semibold">UNCLASSIFIED</span>
+        </div>
+        <div class="mt-1 flex items-center gap-1 text-[10px] text-slate-400">
+          <i class="fa-solid fa-building-columns text-[9px]"></i> CFR Framework / Biosecurity
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="flex-1 flex flex-col min-h-screen overflow-y-auto">
+
+      <!-- TOP GLOBAL BAR -->
+      <header class="bg-slate-900/60 backdrop-blur-md border-b border-slate-800 px-6 py-3.5 flex flex-wrap items-center justify-between gap-4 sticky top-0 z-30">
+        <div class="flex items-center gap-3">
+          <div class="flex items-center gap-2">
+            <span class="h-2 w-2 rounded-full bg-rose-500 animate-pulse"></span>
+            <span class="text-xs font-mono font-semibold tracking-wider text-slate-300 uppercase" id="current-view-badge">VIEW 1: RISK ECOSYSTEM MIND MAP</span>
+          </div>
+          <span class="text-slate-600 hidden sm:inline">|</span>
+          <span class="text-xs text-slate-400 hidden sm:inline font-mono">Strategic Threat Vector: Peacetime Weaponization</span>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <!-- Search / Quick Filter button -->
+          <button onclick="toggleQuickSearch()" class="px-3 py-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-xs font-medium text-slate-300 hover:text-white border border-slate-700/60 flex items-center gap-2 transition-all">
+            <i class="fa-solid fa-magnifying-glass text-slate-400"></i>
+            <span class="hidden sm:inline">Node Intel Search</span>
+            <kbd class="px-1.5 py-0.5 text-[10px] font-mono bg-slate-900 text-slate-400 rounded border border-slate-700">⌘K</kbd>
+          </button>
+
+          <!-- Report Briefing Modal trigger -->
+          <button onclick="openBriefingModal()" class="px-3 py-1.5 rounded-lg bg-rose-600/20 hover:bg-rose-600/30 text-rose-300 hover:text-rose-200 text-xs font-medium border border-rose-500/40 flex items-center gap-1.5 transition-all">
+            <i class="fa-solid fa-file-shield"></i>
+            <span>Executive Dossier</span>
+          </button>
+
+          <!-- Print / Save Briefing button -->
+          <button onclick="window.print()" class="px-3 py-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-medium border border-slate-700/60 flex items-center gap-1.5 transition-all" title="Print or Save PDF Dossier">
+            <i class="fa-solid fa-print text-slate-400"></i>
+            <span class="hidden sm:inline">Print Brief</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- VIEW 1: INTERACTIVE PHARMA SUPPLY CHAIN MIND MAP -->
+      <section id="view-mindmap" class="view-panel p-6 flex-1 flex flex-col">
+        <div class="mb-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="px-2 py-0.5 text-xs font-mono font-semibold bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 rounded">Node-Link Graph</span>
+              <span class="text-xs text-slate-400 font-mono">Multi-tier Dependency Topography</span>
+            </div>
+            <h2 class="text-2xl font-bold text-white mt-1">Interactive Pharma Supply Chain Mind Map</h2>
+            <p class="text-sm text-slate-400 max-w-3xl mt-1">
+              Interactive node-link graph mapping the pharmaceutical risk ecosystem. Click any node in the graph or the explorer below to inspect upstream choke points, KSM dependencies, and regulatory opacity.
+            </p>
+          </div>
+          <div class="flex items-center gap-2 flex-wrap">
+            <button onclick="filterMindmapCategory('all')" class="mindmap-filter-btn px-2.5 py-1 text-xs rounded-lg font-mono bg-slate-800 text-slate-300 border border-slate-700 hover:border-slate-500 active-filter" data-cat="all">All Layers</button>
+            <button onclick="filterMindmapCategory('drivers')" class="mindmap-filter-btn px-2.5 py-1 text-xs rounded-lg font-mono bg-slate-800 text-slate-300 border border-slate-700 hover:border-slate-500" data-cat="drivers">Market Drivers</button>
+            <button onclick="filterMindmapCategory('medicines')" class="mindmap-filter-btn px-2.5 py-1 text-xs rounded-lg font-mono bg-slate-800 text-slate-300 border border-slate-700 hover:border-slate-500" data-cat="medicines">4 Target Medicines</button>
+            <button onclick="filterMindmapCategory('chokepoints')" class="mindmap-filter-btn px-2.5 py-1 text-xs rounded-lg font-mono bg-slate-800 text-slate-300 border border-slate-700 hover:border-slate-500" data-cat="chokepoints">Geopolitical Choke Points</button>
+          </div>
+        </div>
+
+        <!-- Main Workspace: Graph + Interactive Side Panel -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 flex-1 items-start">
+          
+          <!-- Graph Container -->
+          <div class="lg:col-span-8 bg-slate-900/70 border border-slate-800 rounded-2xl p-4 flex flex-col relative overflow-hidden backdrop-blur-sm">
+            <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-800 text-xs">
+              <div class="flex items-center gap-2">
+                <i class="fa-solid fa-circle-nodes text-cyan-400"></i>
+                <span class="font-mono text-slate-300 font-medium">Mermaid Graph Ecosystem</span>
+                <span class="text-slate-500 text-[11px]">(Click any node to load context)</span>
+              </div>
+              <div class="flex items-center gap-2 text-[11px] font-mono">
+                <span class="flex items-center gap-1 text-rose-400"><span class="w-2 h-2 rounded-full bg-rose-500 inline-block"></span> Choke Point</span>
+                <span class="flex items-center gap-1 text-amber-400"><span class="w-2 h-2 rounded-full bg-amber-500 inline-block"></span> Driver / Opacity</span>
+                <span class="flex items-center gap-1 text-cyan-400"><span class="w-2 h-2 rounded-full bg-cyan-500 inline-block"></span> Target Drug</span>
+              </div>
+            </div>
+
+            <!-- Quick Node Quick-Access Bar -->
+            <div class="flex flex-wrap gap-1.5 mb-3 p-2 bg-slate-950/60 rounded-xl border border-slate-800/80">
+              <span class="text-[11px] text-slate-500 font-mono py-1 px-1.5 flex items-center gap-1"><i class="fa-solid fa-hand-pointer text-[10px]"></i> Inspect:</span>
+              <button onclick="selectNode('hub')" class="node-chip px-2 py-1 text-[11px] font-mono rounded bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700">Central Hub</button>
+              <button onclick="selectNode('amox')" class="node-chip px-2 py-1 text-[11px] font-mono rounded bg-cyan-950/60 hover:bg-cyan-900/60 text-cyan-300 border border-cyan-800/60">Amoxicillin</button>
+              <button onclick="selectNode('heparin')" class="node-chip px-2 py-1 text-[11px] font-mono rounded bg-cyan-950/60 hover:bg-cyan-900/60 text-cyan-300 border border-cyan-800/60">Heparin</button>
+              <button onclick="selectNode('norepi')" class="node-chip px-2 py-1 text-[11px] font-mono rounded bg-cyan-950/60 hover:bg-cyan-900/60 text-cyan-300 border border-cyan-800/60">Norepinephrine</button>
+              <button onclick="selectNode('acet')" class="node-chip px-2 py-1 text-[11px] font-mono rounded bg-cyan-950/60 hover:bg-cyan-900/60 text-cyan-300 border border-cyan-800/60">Acetaminophen</button>
+              <button onclick="selectNode('apa6')" class="node-chip px-2 py-1 text-[11px] font-mono rounded bg-rose-950/60 hover:bg-rose-900/60 text-rose-300 border border-rose-800/60">6-APA (94% PRC)</button>
+              <button onclick="selectNode('mucosa')" class="node-chip px-2 py-1 text-[11px] font-mono rounded bg-rose-950/60 hover:bg-rose-900/60 text-rose-300 border border-rose-800/60">Porcine Mucosa (75%)</button>
+              <button onclick="selectNode('fillfinish')" class="node-chip px-2 py-1 text-[11px] font-mono rounded bg-amber-950/60 hover:bg-amber-900/60 text-amber-300 border border-amber-800/60">Aseptic Fill-Finish</button>
+              <button onclick="selectNode('pap')" class="node-chip px-2 py-1 text-[11px] font-mono rounded bg-rose-950/60 hover:bg-rose-900/60 text-rose-300 border border-rose-800/60">4-Aminophenol (PAP)</button>
+              <button onclick="selectNode('n1problem')" class="node-chip px-2 py-1 text-[11px] font-mono rounded bg-amber-950/60 hover:bg-amber-900/60 text-amber-300 border border-amber-800/60">N-1 Problem</button>
+            </div>
+
+            <!-- Mermaid SVG Render Target -->
+            <div id="mermaid-graph-container" class="mermaid-diagram-wrap overflow-x-auto min-h-[480px] flex items-center justify-center p-2 bg-slate-950/80 rounded-xl border border-slate-800/80">
+              <div class="mermaid" id="mindmap-mermaid">
+graph LR
+  %% Central Hub
+  Hub["<strong>U.S.-CHINA PHARMA<br/>INTERDEPENDENCE</strong>"]:::hubClass
+
+  %% Level 1: Core Branches
+  Hub --> Drivers["<strong>Structural Market<br/>Drivers</strong>"]:::driverClass
+  Hub --> Meds["<strong>The Four Target<br/>Medicines</strong>"]:::medBranchClass
+  Hub --> Choke["<strong>Geopolitical Choke<br/>Points</strong>"]:::chokeClass
+
+  %% Structural Drivers Level 2
+  Drivers --> D1["Hatch-Waxman 1984:<br/>Margin Compression"]:::subNodeClass
+  Drivers --> D2["GPO / PBM Lowest-Cost<br/>Bidding Structures"]:::subNodeClass
+  Drivers --> D3["EPA / REACH Costs vs<br/>Subsidized PRC Clusters"]:::subNodeClass
+
+  %% Four Medicines Level 1
+  Meds --> M1["<strong>Amoxicillin</strong><br/>Oral Antibiotic"]:::medClass
+  Meds --> M2["<strong>Heparin</strong><br/>Injectable Anticoagulant"]:::medClass
+  Meds --> M3["<strong>Norepinephrine</strong><br/>ICU Vasopressor"]:::medClass
+  Meds --> M4["<strong>Acetaminophen</strong><br/>Analgesic / Antipyretic"]:::medClass
+
+  %% Level 2 Child Nodes: Specific Upstream Vulnerabilities from Report
+  M1 --> M1_KSM["<strong>6-APA (94% PRC Control)</strong><br/>Penicillin G Fermentation"]:::vulnRedClass
+  M1 --> M1_Trans["Indian Chemical Conversion<br/>FDF Origin Masking"]:::vulnAmberClass
+
+  M2 --> M2_KSM["<strong>Porcine Mucosa (75% PRC)</strong><br/>Pig Intestine Extraction"]:::vulnRedClass
+  M2 --> M2_Disease["Biological Epizootic Risk<br/>African Swine Fever / OSCS"]:::vulnAmberClass
+
+  M3 --> M3_KSM["Catecholamine Precursors<br/>& Chiral Resolving Agents"]:::vulnRedClass
+  M3 --> M3_Sterile["Fragile Aseptic Fill-Finish<br/>Glass Vials / Ampoules"]:::vulnAmberClass
+
+  M4 --> M4_KSM["<strong>4-Aminophenol (PAP)</strong><br/>Petrochemical Synthesis"]:::vulnRedClass
+  M4 --> M4_Mask["OTC vs Rx Masking<br/>Regulatory Blind Spots"]:::vulnAmberClass
+
+  %% Geopolitical Choke Points Level 2
+  Choke --> C1["Direct MOFCOM Export Licensing<br/>& Customs Holds"]:::chokeSubClass
+  Choke --> C2["Indirect Squeezing:<br/>Third-Nation Embargo (India)"]:::chokeSubClass
+  Choke --> C3["Information Leaks &<br/>300-500% Panic Hoarding"]:::chokeSubClass
+  Choke --> C4["Deniable Quality Degradation<br/>Prompting FDA Recalls"]:::chokeSubClass
+
+  %% Styling Definitions
+  classDef hubClass fill:#be123c,stroke:#fda4af,stroke-width:2px,color:#ffffff;
+  classDef driverClass fill:#1e293b,stroke:#94a3b8,stroke-width:2px,color:#f1f5f9;
+  classDef medBranchClass fill:#0e7490,stroke:#38bdf8,stroke-width:2px,color:#ffffff;
+  classDef chokeClass fill:#881337,stroke:#f43f5e,stroke-width:2px,color:#ffffff;
+  classDef medClass fill:#0f172a,stroke:#38bdf8,stroke-width:2px,color:#38bdf8;
+  classDef vulnRedClass fill:#4c0519,stroke:#f43f5e,stroke-width:2px,color:#fecdd3;
+  classDef vulnAmberClass fill:#451a03,stroke:#f59e0b,stroke-width:1.5px,color:#fef3c7;
+  classDef subNodeClass fill:#0f172a,stroke:#64748b,stroke-width:1px,color:#cbd5e1;
+  classDef chokeSubClass fill:#3f1422,stroke:#fb7185,stroke-width:1.5px,color:#ffe4e6;
+              </div>
+            </div>
+          </div>
+
+          <!-- Interactive Explanatory Side-Panel Card -->
+          <div class="lg:col-span-4 bg-slate-900/80 border border-slate-800 rounded-2xl p-5 backdrop-blur-md sticky top-20 shadow-xl" id="mindmap-inspector">
+            <div class="flex items-center justify-between pb-3 border-b border-slate-800 mb-4">
+              <span class="px-2 py-0.5 text-[10px] font-mono font-bold tracking-wider rounded uppercase border" id="node-badge">NODE DOSSIER</span>
+              <span class="text-xs font-mono text-slate-400" id="node-id-tag">ID: HUB_001</span>
+            </div>
+
+            <h3 class="text-xl font-bold text-white tracking-tight" id="node-title">U.S.-China Pharma Interdependence</h3>
+            <div class="text-xs font-mono text-slate-400 mt-0.5" id="node-subtitle">Central Geopolitical Asymmetry Hub</div>
+
+            <!-- Vulnerability Metric Pill -->
+            <div class="my-4 p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex items-center justify-between">
+              <div>
+                <div class="text-[10px] font-mono text-slate-400 uppercase tracking-wider">Upstream Vulnerability Index</div>
+                <div class="text-lg font-bold font-mono text-rose-400" id="node-metric-val">CRITICAL (94/100)</div>
+              </div>
+              <div class="w-12 h-12 rounded-lg bg-rose-500/10 border border-rose-500/30 flex items-center justify-center text-rose-400 text-lg" id="node-metric-icon">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+              </div>
+            </div>
+
+            <!-- Dossier Context -->
+            <div class="space-y-3 text-xs leading-relaxed text-slate-300">
+              <div>
+                <span class="font-mono text-[11px] text-slate-400 uppercase font-semibold block mb-1">Analytical Assessment:</span>
+                <p id="node-summary" class="bg-slate-950/40 p-2.5 rounded-lg border border-slate-800/60 text-slate-200">
+                  Select any node in the graph to display its intelligence breakdown, upstream bottlenecks, and report citations.
+                </p>
+              </div>
+
+              <!-- Report Explanatory Quote Card -->
+              <div>
+                <span class="font-mono text-[11px] text-amber-400 uppercase font-semibold flex items-center gap-1 mb-1">
+                  <i class="fa-solid fa-quote-left text-[10px]"></i> Verbatim Report Citation:
+                </span>
+                <div class="p-3 rounded-xl bg-amber-950/20 border-l-2 border-amber-500 text-slate-300 italic text-[11px] font-mono leading-relaxed" id="node-quote">
+                  "Peacetime weaponization represents a subtle, asymmetric strategy where a dominant state leverages structural supply chain concentration to achieve political, diplomatic, or economic leverage during nominal peace." [Section 1.1]
+                </div>
+              </div>
+
+              <!-- Key Stakeholders / Choke Entities -->
+              <div class="pt-2 border-t border-slate-800">
+                <span class="font-mono text-[11px] text-slate-400 uppercase font-semibold block mb-1">Key Entities & Regulators:</span>
+                <div class="flex flex-wrap gap-1.5" id="node-tags">
+                  <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-slate-800 text-slate-300">PRC MOFCOM</span>
+                  <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-slate-800 text-slate-300">FDA</span>
+                  <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-slate-800 text-slate-300">DLA</span>
+                  <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-slate-800 text-slate-300">GPOs</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- View Associated Data Button -->
+            <button onclick="switchView('dashboard')" class="mt-5 w-full py-2.5 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-white border border-slate-700 flex items-center justify-center gap-2 transition-all">
+              <span>View Data Metrics in Dashboard</span>
+              <i class="fa-solid fa-arrow-right text-[10px]"></i>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 2: GEOPOLITICAL RISK DASHBOARD -->
+      <section id="view-dashboard" class="view-panel p-6 flex-1 flex flex-col hidden">
+        <div class="mb-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="px-2 py-0.5 text-xs font-mono font-semibold bg-rose-500/10 text-rose-400 border border-rose-500/30 rounded">Quantitative Intelligence</span>
+              <span class="text-xs text-slate-400 font-mono">CFR Report Empirical Metrics</span>
+            </div>
+            <h2 class="text-2xl font-bold text-white mt-1">Geopolitical Risk & Vulnerability Dashboard</h2>
+            <p class="text-sm text-slate-400 max-w-3xl mt-1">
+              Visual metrics backed by empirical findings in the report, illustrating China's raw input concentration, multi-axis risk pillars, and non-linear supply disruption propagation.
+            </p>
+          </div>
+          <!-- Quick Status Pills -->
+          <div class="flex items-center gap-2">
+            <div class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-xs font-mono">
+              <span class="text-slate-400">Target Scope:</span> <span class="text-white font-bold">4 Molecules</span>
+            </div>
+            <div class="px-3 py-1.5 rounded-lg bg-rose-950/60 border border-rose-800/60 text-xs font-mono text-rose-300">
+              <span class="text-rose-400 font-bold">Peak Risk:</span> 6-APA @ 94%
+            </div>
+          </div>
+        </div>
+
+        <!-- 4 Top Stat Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+          <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-4 relative overflow-hidden">
+            <div class="text-[11px] font-mono text-slate-400 uppercase">Amoxicillin (6-APA)</div>
+            <div class="text-2xl font-black font-mono text-rose-400 mt-1">~94%</div>
+            <div class="text-xs text-slate-400 mt-1">PRC global fermentation capacity control</div>
+            <div class="text-[10px] font-mono text-slate-500 mt-2 border-t border-slate-800 pt-1.5">Bottleneck: CSPC, Federal Pharma, Sinopharm</div>
+          </div>
+
+          <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-4 relative overflow-hidden">
+            <div class="text-[11px] font-mono text-slate-400 uppercase">Heparin (Porcine Mucosa)</div>
+            <div class="text-2xl font-black font-mono text-rose-400 mt-1">~75%</div>
+            <div class="text-xs text-slate-400 mt-1">Crude heparin derived from >50% world swine</div>
+            <div class="text-[10px] font-mono text-slate-500 mt-2 border-t border-slate-800 pt-1.5">Dual Risk: Weaponization + African Swine Fever</div>
+          </div>
+
+          <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-4 relative overflow-hidden">
+            <div class="text-[11px] font-mono text-slate-400 uppercase">Threshold Shock Spike</div>
+            <div class="text-2xl font-black font-mono text-amber-400 mt-1">300–500%</div>
+            <div class="text-xs text-slate-400 mt-1">Panic safety stock hoarding at Days 60–120</div>
+            <div class="text-[10px] font-mono text-slate-500 mt-2 border-t border-slate-800 pt-1.5">Triggers non-linear systemic tipping point</div>
+          </div>
+
+          <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-4 relative overflow-hidden">
+            <div class="text-[11px] font-mono text-slate-400 uppercase">Clinical Collapse Horizon</div>
+            <div class="text-2xl font-black font-mono text-rose-500 mt-1">Day 120+</div>
+            <div class="text-xs text-slate-400 mt-1">Acute ICU & hospital stockouts across U.S.</div>
+            <div class="text-[10px] font-mono text-slate-500 mt-2 border-t border-slate-800 pt-1.5">Forced rationing & open-heart cancellations</div>
+          </div>
+        </div>
+
+        <!-- Charts Grid: Bar Chart & Radar Chart -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-6">
+          
+          <!-- Chart 1: Market Share of Raw Inputs/KSMs (Bar Chart) -->
+          <div class="lg:col-span-7 bg-slate-900/80 border border-slate-800 rounded-2xl p-5 flex flex-col">
+            <div class="flex items-center justify-between mb-4 pb-3 border-b border-slate-800">
+              <div>
+                <h3 class="text-base font-bold text-white flex items-center gap-2">
+                  <i class="fa-solid fa-chart-column text-rose-400"></i>
+                  China's Market Share of Raw Inputs/KSMs
+                </h3>
+                <p class="text-xs text-slate-400 mt-0.5">Explicit percentage share of upstream starting materials vs. Domestic & Allied</p>
+              </div>
+              <span class="text-xs font-mono text-slate-500">[CFR Report Table 1]</span>
+            </div>
+            
+            <div class="relative flex-1 min-h-[300px]">
+              <canvas id="ksmShareChart"></canvas>
+            </div>
+
+            <div class="mt-3 pt-3 border-t border-slate-800/80 text-[11px] text-slate-400 font-mono flex items-center justify-between">
+              <span><i class="fa-solid fa-circle-info text-cyan-400 mr-1"></i> U.S. domestic synthesis remains near 0% across baseline generic KSMs.</span>
+              <span class="text-slate-500">Source: Cite [31, 39, 40, 42]</span>
+            </div>
+          </div>
+
+          <!-- Chart 2: Supply Chain Vulnerability Index (Radar Chart) -->
+          <div class="lg:col-span-5 bg-slate-900/80 border border-slate-800 rounded-2xl p-5 flex flex-col">
+            <div class="flex items-center justify-between mb-4 pb-3 border-b border-slate-800">
+              <div>
+                <h3 class="text-base font-bold text-white flex items-center gap-2">
+                  <i class="fa-solid fa-shield-halved text-cyan-400"></i>
+                  Supply Chain Vulnerability Index
+                </h3>
+                <p class="text-xs text-slate-400 mt-0.5">Mapping the 4 core vulnerability pillars defined in the report</p>
+              </div>
+              <span class="text-xs font-mono text-slate-500">[Multi-Pillar Index]</span>
+            </div>
+
+            <div class="relative flex-1 min-h-[300px] flex items-center justify-center">
+              <canvas id="vulnerabilityRadarChart"></canvas>
+            </div>
+
+            <div class="mt-3 pt-3 border-t border-slate-800/80 text-[11px] text-slate-400 font-mono flex items-center justify-between">
+              <span><i class="fa-solid fa-check text-emerald-400 mr-1"></i> Pillars: Upstream, Substitutes, Opacity, Fill-Finish.</span>
+              <span class="text-rose-400 font-semibold">Max: Heparin & Norepi</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- WIDGET 3: INTERACTIVE TIMELINE SIMULATOR -->
+        <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 shadow-2xl relative overflow-hidden">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-5 pb-4 border-b border-slate-800">
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="px-2 py-0.5 text-xs font-mono font-bold bg-amber-500/10 text-amber-400 border border-amber-500/30 rounded">SIMULATION ENGINE</span>
+                <span class="text-xs text-slate-400 font-mono">Section 3.3 Shock Propagation Timeline</span>
+              </div>
+              <h3 class="text-xl font-bold text-white mt-1 flex items-center gap-2">
+                <i class="fa-solid fa-stopwatch text-amber-400"></i>
+                Shock Propagation & Threshold Acceleration Simulator
+              </h3>
+              <p class="text-xs text-slate-400 mt-0.5">
+                Model the non-linear cascade from a quiet 80% upstream KSM curtailment in China down to hospital ICU bed stockouts.
+              </p>
+            </div>
+
+            <!-- Auto-Play Controls -->
+            <div class="flex items-center gap-2">
+              <button onclick="toggleTimelinePlay()" id="timeline-play-btn" class="px-3.5 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-600 text-slate-950 text-xs font-bold font-mono flex items-center gap-2 transition-all">
+                <i class="fa-solid fa-play" id="play-icon"></i>
+                <span id="play-text">Auto Play Run</span>
+              </button>
+              <button onclick="resetTimeline()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-mono border border-slate-700 transition-all">
+                <i class="fa-solid fa-rotate-left"></i> Reset
+              </button>
+            </div>
+          </div>
+
+          <!-- Slider Controls -->
+          <div class="bg-slate-950/70 p-5 rounded-xl border border-slate-800/80 mb-6">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+              <div class="flex items-center gap-2 font-mono text-sm">
+                <span class="text-slate-400">TIMELINE POSITION:</span>
+                <span class="text-amber-400 font-bold text-lg" id="sim-day-label">Day 0 (Month 0.0)</span>
+                <span class="text-xs px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700" id="sim-phase-badge">Phase 1: Buffer Clearing</span>
+              </div>
+              <div class="text-xs font-mono text-slate-500">
+                Slider Range: Month 0 (Day 0) → Month 6 (Day 180+)
+              </div>
+            </div>
+
+            <!-- Range Slider -->
+            <input type="range" min="0" max="180" step="1" value="0" id="timelineSlider" oninput="updateTimelineSimulation(this.value)" class="w-full h-3 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-amber-500">
+
+            <!-- Phase Markers -->
+            <div class="flex justify-between text-[11px] font-mono text-slate-400 mt-2.5 px-1">
+              <button onclick="jumpToDay(0)" class="hover:text-amber-400 text-left">
+                <span class="font-bold block text-slate-200">M0 (Day 0)</span>
+                <span class="text-[10px] text-slate-500">PRC 80% Export Curtailment</span>
+              </button>
+              <button onclick="jumpToDay(60)" class="hover:text-amber-400 text-center">
+                <span class="font-bold block text-slate-200">M2 (Day 60)</span>
+                <span class="text-[10px] text-slate-500">Upstream Buffers Depleted</span>
+              </button>
+              <button onclick="jumpToDay(100)" class="hover:text-amber-400 text-center">
+                <span class="font-bold block text-slate-200">M3.3 (Day 100)</span>
+                <span class="text-[10px] text-slate-500">300-500% Panic Hoarding</span>
+              </button>
+              <button onclick="jumpToDay(120)" class="hover:text-amber-400 text-center">
+                <span class="font-bold block text-rose-400">M4 (Day 120)</span>
+                <span class="text-[10px] text-slate-500">Clinical Collapse Tipping</span>
+              </button>
+              <button onclick="jumpToDay(180)" class="hover:text-amber-400 text-right">
+                <span class="font-bold block text-rose-400">M6 (Day 180+)</span>
+                <span class="text-[10px] text-slate-500">Severe ICU Stockouts</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Dynamic Readout & Indicators -->
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-5 items-stretch">
+            
+            <!-- Real-time Status Gauges -->
+            <div class="md:col-span-5 bg-slate-950/60 p-4 rounded-xl border border-slate-800 flex flex-col justify-between space-y-3 font-mono text-xs">
+              <div class="font-bold text-slate-300 text-xs border-b border-slate-800 pb-2 flex items-center justify-between">
+                <span>SYSTEM STATE GAUGES</span>
+                <span class="text-[10px] text-slate-500" id="gauge-timestamp">T+0 DAYS</span>
+              </div>
+
+              <!-- Gauge 1: Pipeline Buffer Stock -->
+              <div>
+                <div class="flex justify-between text-[11px] mb-1">
+                  <span class="text-slate-400">Indian/Allied Safety Stock:</span>
+                  <span class="font-bold text-amber-400" id="gauge-buffer-text">100% (60 Days Supply)</span>
+                </div>
+                <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+                  <div class="bg-amber-400 h-2 rounded-full transition-all duration-150" id="gauge-buffer-bar" style="width: 100%"></div>
+                </div>
+              </div>
+
+              <!-- Gauge 2: FDF Wholesaler Inventory -->
+              <div>
+                <div class="flex justify-between text-[11px] mb-1">
+                  <span class="text-slate-400">U.S. Wholesaler Inventory:</span>
+                  <span class="font-bold text-cyan-400" id="gauge-wholesaler-text">100% (Full Fill)</span>
+                </div>
+                <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+                  <div class="bg-cyan-400 h-2 rounded-full transition-all duration-150" id="gauge-wholesaler-bar" style="width: 100%"></div>
+                </div>
+              </div>
+
+              <!-- Gauge 3: Hospital ICU Fill Rate -->
+              <div>
+                <div class="flex justify-between text-[11px] mb-1">
+                  <span class="text-slate-400">Clinical Bed Stockout Risk:</span>
+                  <span class="font-bold text-emerald-400" id="gauge-icu-text">0% (Normal Supply)</span>
+                </div>
+                <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+                  <div class="bg-emerald-500 h-2 rounded-full transition-all duration-150" id="gauge-icu-bar" style="width: 0%"></div>
+                </div>
+              </div>
+
+              <!-- Alert Status Banner -->
+              <div class="p-2.5 rounded-lg border text-center font-bold text-xs" id="gauge-alert-box">
+                STATUS: NOMINAL (LATENT UPSTREAM SHOCK)
+              </div>
+            </div>
+
+            <!-- Narrative Shock Propagation Box -->
+            <div class="md:col-span-7 bg-slate-950/60 p-4 rounded-xl border border-slate-800 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between text-xs font-mono text-slate-400 border-b border-slate-800 pb-2 mb-2">
+                  <span class="font-bold text-white flex items-center gap-1.5">
+                    <i class="fa-solid fa-radiation text-rose-400"></i>
+                    PROPAGATION MECHANISM AT CURRENT TIMELINE
+                  </span>
+                  <span class="text-amber-400" id="sim-stage-indicator">STAGE: BUFFER CLEARING</span>
+                </div>
+
+                <h4 class="text-sm font-bold text-slate-100 mb-2" id="sim-headline">
+                  Quiet Upstream Curtailment: Plausible Deniability Phase
+                </h4>
+
+                <p class="text-xs text-slate-300 leading-relaxed mb-3" id="sim-description">
+                  The Chinese government quietly curtails 6-APA and PAP export volumes by 80% under the guise of unannounced environmental inspections and domestic clinical reserves. Upstream API synthesis plants in India draw down on their 30-60 day buffer stocks. Finished dosage forms continue to ship to U.S. hospitals. Health authorities perceive zero immediate crisis.
+                </p>
+              </div>
+
+              <div class="p-3 rounded-lg bg-slate-900 border-l-2 border-amber-500 text-[11px] font-mono text-slate-300 italic" id="sim-report-quote">
+                "Downstream health authorities perceive zero immediate impact, creating a false sense of security." [Section 3.3]
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 3: EXECUTIVE SLIDE DECK VIEWER -->
+      <section id="view-slidedeck" class="view-panel p-6 flex-1 flex flex-col hidden">
+        <div class="mb-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="px-2 py-0.5 text-xs font-mono font-semibold bg-amber-500/10 text-amber-400 border border-amber-500/30 rounded">Briefing Presentation</span>
+              <span class="text-xs text-slate-400 font-mono">Senior Executive & National Security Directorate</span>
+            </div>
+            <h2 class="text-2xl font-bold text-white mt-1">Executive Slide Deck Viewer</h2>
+            <p class="text-sm text-slate-400 max-w-3xl mt-1">
+              High-impact, slide-by-slide strategic briefing analyzing peacetime weaponization, the N-1 diversification paradox, and countermeasure economics.
+            </p>
+          </div>
+          <!-- Navigation Controls -->
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-mono text-slate-400 mr-2" id="deck-counter">Slide 1 of 5</span>
+            <button onclick="prevSlide()" class="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition-all" title="Previous Slide (←)">
+              <i class="fa-solid fa-arrow-left"></i>
+            </button>
+            <button onclick="nextSlide()" class="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition-all" title="Next Slide (→)">
+              <i class="fa-solid fa-arrow-right"></i>
+            </button>
+            <button onclick="toggleSlideNotes()" class="px-3 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-mono border border-slate-700 transition-all flex items-center gap-1.5">
+              <i class="fa-solid fa-note-sticky text-amber-400"></i>
+              <span class="hidden sm:inline">Analyst Notes</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Thumbnail Directory Bar -->
+        <div class="grid grid-cols-5 gap-2 mb-5">
+          <button onclick="goToSlide(0)" class="slide-thumb p-2.5 rounded-xl border text-left transition-all active-thumb bg-slate-900 border-amber-500/80" data-idx="0">
+            <div class="text-[10px] font-mono font-bold text-amber-400">SLIDE 01</div>
+            <div class="text-xs font-semibold text-slate-200 truncate mt-0.5">Core Hypothesis</div>
+          </button>
+          <button onclick="goToSlide(1)" class="slide-thumb p-2.5 rounded-xl border text-left transition-all bg-slate-900/60 border-slate-800" data-idx="1">
+            <div class="text-[10px] font-mono font-bold text-slate-500">SLIDE 02</div>
+            <div class="text-xs font-semibold text-slate-300 truncate mt-0.5">The N-1 Problem</div>
+          </button>
+          <button onclick="goToSlide(2)" class="slide-thumb p-2.5 rounded-xl border text-left transition-all bg-slate-900/60 border-slate-800" data-idx="2">
+            <div class="text-[10px] font-mono font-bold text-slate-500">SLIDE 03</div>
+            <div class="text-xs font-semibold text-slate-300 truncate mt-0.5">4 Target Medicines</div>
+          </button>
+          <button onclick="goToSlide(3)" class="slide-thumb p-2.5 rounded-xl border text-left transition-all bg-slate-900/60 border-slate-800" data-idx="3">
+            <div class="text-[10px] font-mono font-bold text-slate-500">SLIDE 04</div>
+            <div class="text-xs font-semibold text-slate-300 truncate mt-0.5">Weaponization Levers</div>
+          </button>
+          <button onclick="goToSlide(4)" class="slide-thumb p-2.5 rounded-xl border text-left transition-all bg-slate-900/60 border-slate-800" data-idx="4">
+            <div class="text-[10px] font-mono font-bold text-slate-500">SLIDE 05</div>
+            <div class="text-xs font-semibold text-slate-300 truncate mt-0.5">Policy Countermeasures</div>
+          </button>
+        </div>
+
+        <!-- Main Slide Presentation Canvas -->
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-10 shadow-2xl relative min-h-[500px] flex flex-col justify-between" id="active-slide-container">
+          <!-- Slide Content will be injected dynamically -->
+          <div id="slide-stage" class="space-y-6">
+            <!-- Dynamic Content -->
+          </div>
+
+          <!-- Slide Footer Meta -->
+          <div class="pt-6 border-t border-slate-800/80 flex flex-wrap items-center justify-between text-xs font-mono text-slate-500 gap-2">
+            <div class="flex items-center gap-3">
+              <span>CFR STRATEGIC REPORT METHODOLOGY</span>
+              <span>•</span>
+              <span class="text-rose-400">ARCHETYPE ONE BIODEFENSE</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span>Use [← / →] arrow keys to navigate</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Analyst Notes Drawer (collapsible) -->
+        <div id="analyst-notes-drawer" class="mt-4 p-4 rounded-xl bg-slate-950/80 border border-slate-800 text-xs font-mono text-slate-300 hidden">
+          <div class="flex items-center gap-2 text-amber-400 font-bold mb-1">
+            <i class="fa-solid fa-user-secret"></i> BRIEFING SPEAKER NOTES & STRATEGIC SUBTEXT:
+          </div>
+          <p id="slide-analyst-notes" class="leading-relaxed text-slate-400">
+            Notes will appear here...
+          </p>
+        </div>
+      </section>
+
+      <!-- VIEW 4: INTERACTIVE RESHORING WORKFLOW -->
+      <section id="view-reshoring" class="view-panel p-6 flex-1 flex flex-col hidden">
+        <div class="mb-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="px-2 py-0.5 text-xs font-mono font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 rounded">Industrial Policy</span>
+              <span class="text-xs text-slate-400 font-mono">Sequential Implementation Architecture</span>
+            </div>
+            <h2 class="text-2xl font-bold text-white mt-1">Interactive Reshoring Policy Workflow</h2>
+            <p class="text-sm text-slate-400 max-w-3xl mt-1">
+              Phased strategic sequence to eliminate Archetype One dependencies. Click each policy phase card to analyze operational hurdles, retaliatory hazards, and lead agency portfolios.
+            </p>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-mono text-slate-400">Horizon:</span>
+            <span class="px-2.5 py-1 text-xs font-mono font-semibold bg-slate-800 text-emerald-400 border border-slate-700 rounded-lg">1 to 10 Year Phased Execution</span>
+          </div>
+        </div>
+
+        <!-- Mermaid Flowchart Visual for Reshoring Sequence -->
+        <div class="bg-slate-900/70 border border-slate-800 rounded-2xl p-4 mb-6 overflow-hidden">
+          <div class="flex items-center justify-between pb-2 mb-2 border-b border-slate-800 text-xs font-mono text-slate-400">
+            <span class="flex items-center gap-2 text-emerald-400"><i class="fa-solid fa-route"></i> Sequential Policy Architecture</span>
+            <span>Section 4: Industrial Policy Evaluation</span>
+          </div>
+          <div class="mermaid-workflow-wrap overflow-x-auto p-2 bg-slate-950/70 rounded-xl border border-slate-800/80">
+            <div class="mermaid" id="workflow-mermaid">
+graph LR
+  subgraph Phase1["PHASE 1: Immediate Auditing & Labeling (Years 1-3)"]
+    P1_A["<strong>Mandatory COOL</strong><br/>Multi-Tier Origin Disclosure"]:::stepClass
+    P1_B["<strong>Close OTC Blind Spot</strong><br/>Expose Unregulated PAP"]:::stepClass
+  end
+
+  subgraph Phase2["PHASE 2: Near-Term Buffering (Years 1-2)"]
+    P2_A["<strong>SAPIR Reserve</strong><br/>High-Density KSM Stockpile"]:::bufferClass
+    P2_B["<strong>Allied Medicine Blocs</strong><br/>US-EU-India-Japan Friend-Shoring"]:::bufferClass
+  end
+
+  subgraph Phase3["PHASE 3: Structural Reshoring (Years 3-5+)"]
+    P3_A["<strong>Advanced Manufacturing (AMTs)</strong><br/>Continuous Flow & Green Chem"]:::reshoringClass
+    P3_B["<strong>Medicare Part B/C Reforms</strong><br/>Guaranteed Demand Premiums"]:::reshoringClass
+  end
+
+  Phase1 --> Phase2
+  Phase2 --> Phase3
+
+  classDef stepClass fill:#1e293b,stroke:#06b6d4,stroke-width:2px,color:#e0f2fe;
+  classDef bufferClass fill:#1e293b,stroke:#f59e0b,stroke-width:2px,color:#fef3c7;
+  classDef reshoringClass fill:#064e3b,stroke:#10b981,stroke-width:2px,color:#ecfdf5;
+            </div>
+          </div>
+        </div>
+
+        <!-- 3 Clickable Phase Step Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+          
+          <!-- Phase 1 Card -->
+          <div onclick="selectWorkflowPhase(1)" id="phase-card-1" class="phase-card cursor-pointer p-5 rounded-2xl border transition-all duration-200 bg-slate-900 border-emerald-500/80 shadow-lg shadow-emerald-950/40" data-phase="1">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-mono font-bold text-emerald-400">PHASE 01 (YEARS 1–3)</span>
+              <span class="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 text-xs flex items-center justify-center font-bold">1</span>
+            </div>
+            <h3 class="text-base font-bold text-white mb-1">Auditing & Mandatory Labeling</h3>
+            <p class="text-xs text-slate-300 leading-relaxed mb-3">
+              Enact mandatory Country-of-Origin Labeling (COOL) for APIs & KSMs. Eliminate OTC reporting exemptions to expose true raw material provenance.
+            </p>
+            <div class="flex items-center justify-between text-[11px] font-mono text-slate-400 pt-2 border-t border-slate-800">
+              <span>Leads: FDA / CMS</span>
+              <span class="text-emerald-400 font-semibold">Active Selection</span>
+            </div>
+          </div>
+
+          <!-- Phase 2 Card -->
+          <div onclick="selectWorkflowPhase(2)" id="phase-card-2" class="phase-card cursor-pointer p-5 rounded-2xl border transition-all duration-200 bg-slate-900/60 border-slate-800 hover:border-slate-700" data-phase="2">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-mono font-bold text-amber-400">PHASE 02 (YEARS 1–2)</span>
+              <span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-xs flex items-center justify-center font-bold">2</span>
+            </div>
+            <h3 class="text-base font-bold text-white mb-1">Near-Term Strategic Buffering</h3>
+            <p class="text-xs text-slate-300 leading-relaxed mb-3">
+              Deploy the Strategic API Reserve (SAPIR) for 6-APA, PAP, and crude heparin with active life-cycle rotation. Build Plurilateral Allied Medicine Blocs.
+            </p>
+            <div class="flex items-center justify-between text-[11px] font-mono text-slate-400 pt-2 border-t border-slate-800">
+              <span>Leads: HHS / ASPR / DLA / State</span>
+              <span class="text-slate-500">Click to Inspect</span>
+            </div>
+          </div>
+
+          <!-- Phase 3 Card -->
+          <div onclick="selectWorkflowPhase(3)" id="phase-card-3" class="phase-card cursor-pointer p-5 rounded-2xl border transition-all duration-200 bg-slate-900/60 border-slate-800 hover:border-slate-700" data-phase="3">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-mono font-bold text-cyan-400">PHASE 03 (YEARS 3–5+)</span>
+              <span class="w-6 h-6 rounded-full bg-cyan-500/20 text-cyan-400 text-xs flex items-center justify-center font-bold">3</span>
+            </div>
+            <h3 class="text-base font-bold text-white mb-1">Structural Advanced Reshoring</h3>
+            <p class="text-xs text-slate-300 leading-relaxed mb-3">
+              Scale continuous flow synthesis & green enzymatic chemistry (AMTs) cutting hazardous waste 80-90%. Revamp Medicare reimbursement to break race-to-the-bottom.
+            </p>
+            <div class="flex items-center justify-between text-[11px] font-mono text-slate-400 pt-2 border-t border-slate-800">
+              <span>Leads: BARDA / DOD / NSF / CMS</span>
+              <span class="text-slate-500">Click to Inspect</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dynamic Deep Comparison Drawer: Implementation Hurdles vs Retaliatory Risks -->
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl" id="workflow-comparison-panel">
+          <div class="flex flex-col md:flex-row md:items-center justify-between pb-4 mb-4 border-b border-slate-800 gap-2">
+            <div>
+              <span class="text-xs font-mono text-emerald-400 uppercase font-bold" id="panel-phase-badge">ANALYSIS FOR PHASE 1</span>
+              <h3 class="text-lg font-bold text-white" id="panel-phase-title">Mandatory Country-of-Origin Labeling & Provenance Audits</h3>
+            </div>
+            <div class="text-xs font-mono text-slate-400" id="panel-phase-lead">
+              Lead Oversight Agencies: <span class="text-slate-200 font-semibold">FDA / CMS / USTR</span>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            
+            <!-- Left Column: Implementation Hurdles straight from the text -->
+            <div class="p-4 rounded-xl bg-slate-950/80 border border-amber-900/30">
+              <div class="flex items-center gap-2 text-amber-400 font-bold text-sm mb-3">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                <span>Implementation Hurdles & Operational Constraints</span>
+              </div>
+              <ul class="space-y-2.5 text-xs text-slate-300 leading-relaxed" id="panel-hurdles-list">
+                <!-- Dynamically populated -->
+              </ul>
+            </div>
+
+            <!-- Right Column: Retaliatory Risks from China straight from the text -->
+            <div class="p-4 rounded-xl bg-slate-950/80 border border-rose-900/30">
+              <div class="flex items-center gap-2 text-rose-400 font-bold text-sm mb-3">
+                <i class="fa-solid fa-shield-virus"></i>
+                <span>Retaliatory Risks from China & Policy Trade-offs</span>
+              </div>
+              <ul class="space-y-2.5 text-xs text-slate-300 leading-relaxed" id="panel-risks-list">
+                <!-- Dynamically populated -->
+              </ul>
+            </div>
+          </div>
+
+          <!-- Lead Agency Roadmap Table from Page 7 -->
+          <div class="mt-6 pt-5 border-t border-slate-800">
+            <h4 class="text-xs font-mono font-bold text-slate-300 uppercase tracking-wider mb-3 flex items-center gap-2">
+              <i class="fa-solid fa-table-list text-cyan-400"></i>
+              Statutory Implementation Matrix (Report Page 7 Roadmap)
+            </h4>
+            <div class="overflow-x-auto">
+              <table class="w-full text-left text-xs font-mono border-collapse">
+                <thead>
+                  <tr class="border-b border-slate-800 text-slate-400 bg-slate-950/40">
+                    <th class="py-2.5 px-3">Horizon</th>
+                    <th class="py-2.5 px-3">Policy Tool / Mechanism</th>
+                    <th class="py-2.5 px-3">Lead Agencies</th>
+                    <th class="py-2.5 px-3">Strategic Objective</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-800/60 text-slate-300">
+                  <tr class="hover:bg-slate-800/30">
+                    <td class="py-2 px-3 text-amber-400 font-bold">Near-Term (1-2 Yrs)</td>
+                    <td class="py-2 px-3 text-white font-semibold">Strategic API Reserve (SAPIR)</td>
+                    <td class="py-2 px-3">HHS / ASPR / DLA</td>
+                    <td class="py-2 px-3 text-slate-400">Build physical buffers for 6-APA, PAP, and crude heparin with active rotation.</td>
+                  </tr>
+                  <tr class="hover:bg-slate-800/30">
+                    <td class="py-2 px-3 text-amber-400 font-bold">Near-Term (1-2 Yrs)</td>
+                    <td class="py-2 px-3 text-white font-semibold">Plurilateral Allied Blocs</td>
+                    <td class="py-2 px-3">State Dept / USTR / HHS</td>
+                    <td class="py-2 px-3 text-slate-400">Coordinate friend-shoring, inventory sharing, and mutual inspection recognition.</td>
+                  </tr>
+                  <tr class="hover:bg-slate-800/30">
+                    <td class="py-2 px-3 text-emerald-400 font-bold">Long-Term (3-5+ Yrs)</td>
+                    <td class="py-2 px-3 text-white font-semibold">AMT Capital Investment</td>
+                    <td class="py-2 px-3">BARDA / DOD / NSF</td>
+                    <td class="py-2 px-3 text-slate-400">Continuous flow & green chemistry to achieve cost-parity with Chinese batch plants.</td>
+                  </tr>
+                  <tr class="hover:bg-slate-800/30">
+                    <td class="py-2 px-3 text-emerald-400 font-bold">Long-Term (3-5+ Yrs)</td>
+                    <td class="py-2 px-3 text-white font-semibold">Mandatory COOL & Medicare Reforms</td>
+                    <td class="py-2 px-3">FDA / CMS</td>
+                    <td class="py-2 px-3 text-slate-400">Multi-tier labeling + Part B/C reimbursement premiums to break lowest-cost-wins.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- QUICK SEARCH MODAL -->
+    <div id="quickSearchModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-start justify-center pt-20 p-4 hidden">
+      <div class="bg-slate-900 border border-slate-700 w-full max-w-xl rounded-2xl shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+        <div class="p-4 border-b border-slate-800 flex items-center gap-3">
+          <i class="fa-solid fa-magnifying-glass text-slate-400"></i>
+          <input type="text" id="searchInput" oninput="handleSearch(this.value)" placeholder="Search drugs, choke points, KSMs (e.g., 6-APA, heparin, PAP)..." class="bg-transparent border-none text-slate-100 placeholder-slate-500 text-sm focus:outline-none w-full font-sans">
+          <button onclick="toggleQuickSearch()" class="text-slate-400 hover:text-white text-xs px-2 py-1 rounded bg-slate-800 font-mono">ESC</button>
+        </div>
+        <div class="p-2 max-h-80 overflow-y-auto space-y-1" id="searchResultsContainer">
+          <!-- Filtered items -->
+        </div>
+      </div>
+    </div>
+
+    <!-- EXECUTIVE DOSSIER / REPORT SUMMARY MODAL -->
+    <div id="briefingModal" class="fixed inset-0 bg-slate-950/85 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+      <div class="bg-slate-900 border border-slate-700 w-full max-w-3xl rounded-2xl shadow-2xl max-h-[90vh] flex flex-col overflow-hidden">
+        <div class="p-5 border-b border-slate-800 flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-rose-500/20 text-rose-400 flex items-center justify-center text-sm font-bold">
+              <i class="fa-solid fa-file-contract"></i>
+            </div>
+            <div>
+              <h3 class="text-base font-bold text-white">Executive Intelligence Summary</h3>
+              <p class="text-xs text-slate-400 font-mono">CFR Strategic Report: The Pharma Choke Point (Oct 2026)</p>
+            </div>
+          </div>
+          <button onclick="closeBriefingModal()" class="text-slate-400 hover:text-white p-2">
+            <i class="fa-solid fa-xmark text-lg"></i>
+          </button>
+        </div>
+
+        <div class="p-6 overflow-y-auto space-y-4 text-xs leading-relaxed text-slate-300">
+          <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 font-mono text-[11px] text-amber-300">
+            <strong>CORE DOCTRINE:</strong> U.S. pharmaceutical resilience is undermined by the <em>"N-1 Problem"</em>. Downstream FDF geographic diversification masks near-total single-source upstream dependency on Chinese fermentation vats and petrochemical clusters.
+          </div>
+
+          <h4 class="font-bold text-white text-sm">Key Takeaways for Decision-Makers:</h4>
+          <ol class="list-decimal pl-5 space-y-2">
+            <li><strong>Peacetime Weaponization is Asymmetric:</strong> Rather than overt blockades, Beijing can leverage regulatory levers (customs holds, hyper-stringent environmental closures) with plausible deniability.</li>
+            <li><strong>The Four Critical Choke Points:</strong>
+              <ul class="list-disc pl-5 mt-1 space-y-1 text-slate-400">
+                <li><span class="text-white font-semibold">Amoxicillin:</span> 94% of global 6-APA controlled by China; Indian API synthesizers are merely conversion hubs.</li>
+                <li><span class="text-white font-semibold">Heparin:</span> 75% crude porcine mucosa sourced from China; vulnerable to biological African Swine Fever.</li>
+                <li><span class="text-white font-semibold">Norepinephrine:</span> Concentrated catecholamine precursors + severely fragile domestic aseptic fill-finish lines.</li>
+                <li><span class="text-white font-semibold">Acetaminophen:</span> 4-Aminophenol (PAP) synthesized via subsidized Chinese petrochemicals; masked by OTC reporting loopholes.</li>
+              </ul>
+            </li>
+            <li><strong>Non-Linear Shock Dynamics:</strong> Supply shock propagates invisibly for 60 days before triggering 300–500% panic hoarding and clinical ICU collapse by Day 120+.</li>
+            <li><strong>Reshoring Imperative:</strong> Blanket tariffs cause immediate self-inflicted drug shortages. Sustainable security requires immediate SAPIR reserve buffers, plurilateral allied blocs, continuous flow AMTs, and Medicare price premiums.</li>
+          </ol>
+        </div>
+
+        <div class="p-4 border-t border-slate-800 bg-slate-950/60 flex items-center justify-between text-xs font-mono">
+          <span class="text-slate-500">Unclassified Working Paper</span>
+          <button onclick="closeBriefingModal()" class="px-4 py-2 rounded-lg bg-rose-600 hover:bg-rose-500 text-white font-semibold">
+            Close Dossier
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- VANILLA JAVASCRIPT APPLICATION LOGIC -->
+    <script>
+      /**
+       * THE PHARMA CHOKE POINT - INTELLIGENCE SUITE
+       * Complete Vanilla JS Application Logic
+       */
+
+      // --- 1. INTEL NODE DATABASE FOR VIEW 1 MIND MAP ---
+      const INTEL_NODES = {
+        hub: {
+          id: 'HUB_001',
+          title: 'U.S.-China Pharma Interdependence',
+          subtitle: 'Central Strategic Asymmetry & Geopolitical Axis',
+          badge: 'STRATEGIC COERCION NEXUS',
+          badgeClass: 'bg-rose-500/10 text-rose-400 border-rose-500/30',
+          metricVal: 'CRITICAL (96/100)',
+          metricIcon: 'fa-triangle-exclamation',
+          metricClass: 'text-rose-400',
+          summary: 'The United States and Western healthcare systems maintain an existential reliance on the People\'s Republic of China for upstream Key Starting Materials (KSMs), fermentation precursors, and basic active ingredients. This structural concentration grants Beijing asymmetric leverage during nominal peacetime.',
+          quote: '"Peacetime weaponization represents a subtle, asymmetric strategy where a dominant state leverages structural supply chain concentration to achieve political, diplomatic, or economic leverage during nominal peace." [Section 1.1]',
+          tags: ['National Security', 'CFR Framework', 'Biosecurity', 'Archetype One']
+        },
+        drivers: {
+          id: 'DRV_002',
+          title: 'Structural Market Drivers',
+          subtitle: 'Decades of Economic & Regulatory Migration',
+          badge: 'MARKET EROSION MECHANISM',
+          badgeClass: 'bg-slate-700/30 text-slate-300 border-slate-600',
+          metricVal: 'HIGH (82/100)',
+          metricIcon: 'fa-arrow-trend-down',
+          metricClass: 'text-amber-400',
+          summary: 'The migration of manufacturing out of the West was driven by post-1984 Hatch-Waxman generic commoditization, GPO/PBM "lowest-cost-wins" bidding that ignores redundancy, and U.S. EPA / EU REACH compliance costs versus Chinese state subsidies.',
+          quote: '"Margins on off-patent baseline molecules collapsed to fractions of a cent per dose, forcing producers to continually cut capital expenditure... Highly capital-intensive Western plants were unable to compete." [Section 1.3]',
+          tags: ['Hatch-Waxman', 'GPOs', 'PBMs', 'EPA Regulations', 'PRC Subsidies']
+        },
+        n1problem: {
+          id: 'N1_003',
+          title: 'The "N-1 Problem" & False Diversification',
+          subtitle: 'Upstream Masking of Multi-Tier Sourcing',
+          badge: 'ANALYTICAL BLIND SPOT',
+          badgeClass: 'bg-amber-500/10 text-amber-400 border-amber-500/30',
+          metricVal: 'ACUTE (91/100)',
+          metricIcon: 'fa-eye-slash',
+          metricClass: 'text-amber-400',
+          summary: 'Western risk models rely on Finished Dosage Form (FDF) registration or API synthesis plant locations, giving an illusion of resilience across India, Europe, and the U.S. Mapping back to steps N-1 and N-2 reveals that all downstream facilities depend on Chinese chemical clusters.',
+          quote: '"If 15 independent generic drug manufacturers located in India, Italy, the United States, and South Korea produce an essential antibiotic API, but 95% of the core KSM required originates from two industrial parks in Shaanxi and Shandong provinces, the downstream geographic distribution offers zero real-world resilience." [Section 1.2]',
+          tags: ['FDF Registration', 'Shaanxi / Shandong', 'API Precursors', 'Transshipment']
+        },
+        amox: {
+          id: 'DRUG_AMX',
+          title: 'Amoxicillin (Oral Antibiotic)',
+          subtitle: 'WHO Essential Broad-Spectrum Pediatric Therapy',
+          badge: 'TARGET MOLECULE 01',
+          badgeClass: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/30',
+          metricVal: 'EXTREME CHOKE (94%)',
+          metricIcon: 'fa-capsules',
+          metricClass: 'text-rose-400',
+          summary: 'First-line therapy for pediatric respiratory infections, strep pharyngitis, and battlefield wound infection prophylaxis. Downstream FDF manufacturing in the US and India relies entirely on 6-APA derived from Penicillin G fermentation in China.',
+          quote: '"China controls approximately 94% of global 6-APA manufacturing capacity. A small cluster of Chinese biomanufacturing conglomerates dominate global fermentation output. Should Chinese facilities halt 6-APA exports, global amoxicillin production would collapse within months." [Section 2.1]',
+          tags: ['WHO Essential', 'Pediatrics', 'Combat Wound Care', 'Penicillin G']
+        },
+        apa6: {
+          id: 'KSM_6APA',
+          title: '6-Aminopenicillanic Acid (6-APA)',
+          subtitle: 'Primary Key Starting Material for Aminopenicillins',
+          badge: 'UPSTREAM MONOPOLY',
+          badgeClass: 'bg-rose-500/10 text-rose-400 border-rose-500/30',
+          metricVal: '94% GLOBAL PRC SHARE',
+          metricIcon: 'fa-biohazard',
+          metricClass: 'text-rose-500',
+          summary: 'Synthesized via energy- and waste-intensive fermentation of Penicillin G. Dominated by CSPC Pharmaceutical Group, Federal Pharmaceutical, and Sinopharm. Indian API plants merely execute final enzymatic conversion.',
+          quote: '"Indian facilities function largely as chemical transformation hubs, performing final enzymatic or chemical conversion steps... Country of Origin labeling rules register the goods as origin India or US, blinding the FDA and DLA." [Section 2.1]',
+          tags: ['6-APA', 'CSPC', 'Federal Pharma', 'Sinopharm', 'Customs Opacity']
+        },
+        heparin: {
+          id: 'DRUG_HEP',
+          title: 'Heparin (Injectable Anticoagulant)',
+          subtitle: 'Mandatory Surgical & High-Acuity Anticoagulant',
+          badge: 'TARGET MOLECULE 02',
+          badgeClass: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/30',
+          metricVal: 'BIOLOGICAL CHOKE (75%)',
+          metricIcon: 'fa-syringe',
+          metricClass: 'text-rose-400',
+          summary: 'Irreplaceable in open-heart surgery, hemodialysis, cardiac catheterization, and ICU ECMO life support. No synthetic alternative matches its immediate onset and complete protamine reversal.',
+          quote: '"Unlike synthetic chemical drugs, heparin is a complex biological macromolecule derived from biological tissue—specifically, the porcine intestinal mucosa (pig intestines)... China controls roughly 75% of global crude heparin supply." [Section 2.2]',
+          tags: ['Open-Heart Surgery', 'Dialysis', 'ECMO', 'Protamine Reversible']
+        },
+        mucosa: {
+          id: 'KSM_MUCOSA',
+          title: 'Porcine Intestinal Mucosa (Crude Heparin)',
+          subtitle: 'Biological Raw Tissue from Slaughterhouses',
+          badge: 'EPIZOOTIC VULNERABILITY',
+          badgeClass: 'bg-rose-500/10 text-rose-400 border-rose-500/30',
+          metricVal: '75% PRC DOMINANCE',
+          metricIcon: 'fa-skull-crossbones',
+          metricClass: 'text-rose-500',
+          summary: 'Harvested from pig intestines across China (which raises over half the global swine herd). Subject to African Swine Fever (ASF) and intentional adulteration, as seen in the deadly 2007-2008 over-sulfated chondroitin sulfate (OSCS) crisis.',
+          quote: '"The 2007–2008 adulteration crisis—where contaminated Chinese crude heparin containing over-sulfated chondroitin sulfate (OSCS) caused scores of deaths in the United States—underscored the severe regulatory and physical risks." [Section 2.2]',
+          tags: ['Porcine Gut', 'Swine Herd >50%', 'African Swine Fever', 'OSCS Scandal']
+        },
+        norepi: {
+          id: 'DRUG_NE',
+          title: 'Norepinephrine (Emergency Vasopressor)',
+          subtitle: 'First-Line Resuscitation Vasopressor',
+          badge: 'TARGET MOLECULE 03',
+          badgeClass: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/30',
+          metricVal: 'DUAL BOTTLENECK (85%)',
+          metricIcon: 'fa-heart-pulse',
+          metricClass: 'text-rose-400',
+          summary: 'Standard-of-care alpha/beta vasopressor used to sustain blood pressure during septic shock, cardiac arrest, trauma surgery, and operative hypotension. Found on every hospital emergency crash cart.',
+          quote: '"Norepinephrine’s vulnerability stems from a dual structural bottleneck: API chemical synthesis concentration and strict downstream sterile aseptic fill-finish manufacturing constraints." [Section 2.3]',
+          tags: ['Septic Shock', 'Crash Carts', 'Operating Rooms', 'Trauma Surgery']
+        },
+        fillfinish: {
+          id: 'KSM_FILL',
+          title: 'Sterile Aseptic Fill-Finish & Precursors',
+          subtitle: 'Catecholamines & Aging Sterile Injectable Lines',
+          badge: 'INFRASTRUCTURE FRAGILITY',
+          badgeClass: 'bg-amber-500/10 text-amber-400 border-amber-500/30',
+          metricVal: 'SINGLE-POINT FAILURE',
+          metricIcon: 'fa-vial-circle-check',
+          metricClass: 'text-amber-400',
+          summary: 'Specialized substituted catechols and chiral resolving agents originate in Chinese industrial parks. Downstream, sterile injectable glass ampoules face razor-thin margins, causing Western pharmaceutical firms to disinvest in aging domestic aseptic fill lines.',
+          quote: '"Decades of margin erosion caused by aggressive GPO discounting led Western pharmaceutical firms to disinvest in aging domestic aseptic fill-finish lines. As a consequence, a single line failure... immediately cascades into acute clinical shortages across U.S. ICUs." [Section 2.3]',
+          tags: ['Glass Ampoules', 'Aseptic Filling', 'GPO Discounting', 'cGMP Standards']
+        },
+        acet: {
+          id: 'DRUG_APAP',
+          title: 'Acetaminophen (Paracetamol)',
+          subtitle: 'Universal Antipyretic & Analgesic',
+          badge: 'TARGET MOLECULE 04',
+          badgeClass: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/30',
+          metricVal: 'PETROCHEM DOMINANCE',
+          metricIcon: 'fa-tablets',
+          metricClass: 'text-rose-400',
+          summary: 'World\'s most consumed antipyretic for high fevers and analgesia in civilian and military combat pill packs. Completely dependent on petrochemical precursor 4-aminophenol (PAP).',
+          quote: '"Because trade and regulatory databases often segregate or omit full upstream disclosure for OTC products, official national security assessments routinely underestimate total U.S. bulk dependence on Chinese PAP and crude acetaminophen API." [Section 2.4]',
+          tags: ['Combat Pill Packs', 'Fever Control', 'Analgesic', 'OTC Exemption']
+        },
+        pap: {
+          id: 'KSM_PAP',
+          title: '4-Aminophenol (PAP Petrochemical KSM)',
+          subtitle: 'Synthesized via Nitrobenzene or Phenol',
+          badge: 'PETROCHEMICAL MONOPOLY',
+          badgeClass: 'bg-rose-500/10 text-rose-400 border-rose-500/30',
+          metricVal: 'DOMINANT GLOBAL SHARE',
+          metricIcon: 'fa-flask',
+          metricClass: 'text-rose-500',
+          summary: 'Synthesized from coal- and oil-derived nitrobenzene. China dominates global output through integrated petrochemical complexes and low subsidized energy costs. OTC packaging blinds regulators to upstream dependence.',
+          quote: '"China is the world\'s primary producer of PAP, commanding significant global market share due to its massive domestic petrochemical integration and low energy costs... OTC supply chains have less stringent upstream reporting." [Section 2.4]',
+          tags: ['Nitrobenzene', 'Phenol', 'Petrochemical Scale', 'OTC Data Masking']
+        },
+        chokepoints: {
+          id: 'CHK_005',
+          title: 'Geopolitical Choke Points & Levers',
+          subtitle: 'Four Modes of Peacetime Supply Coercion',
+          badge: 'COERCION VECTORS',
+          badgeClass: 'bg-rose-500/10 text-rose-400 border-rose-500/30',
+          metricVal: 'THRESHOLD AMBIGUITY',
+          metricIcon: 'fa-shield-halved',
+          metricClass: 'text-rose-400',
+          summary: 'Includes Direct MOFCOM export licensing, Indirect squeezing of Indian and European processors, Information leaks triggering 300-500% panic hoarding, and Deniable quality degradation that triggers mandatory FDA recalls.',
+          quote: '"By denying 6-APA to Indian generic manufacturers, China can collapse global amoxicillin production while claiming the disruption is due to domestic environmental inspections... immobilizing Western facilities without leaving a clear direct trade embargo signature." [Section 3.1]',
+          tags: ['MOFCOM', 'Third-Nation Squeeze', 'Panic Pull-Forward', 'Quality Degradation']
+        }
+      };
+
+      // --- 2. TIMELINE SIMULATOR DATA (Section 3.3) ---
+      const TIMELINE_STAGES = [
+        {
+          maxDay: 60,
+          phase: 'Phase 1: Buffer Clearing Phase (Days 0–60 / M0–M2)',
+          headline: 'Quiet Upstream Curtailment: Plausible Deniability',
+          desc: 'The Chinese Ministry of Commerce or State Council quietly curtails 6-APA and PAP export volumes by 80% under the pretext of environmental inspections and domestic clinical reserves. Upstream API synthesis plants in India and Europe operate normally by drawing down existing 30–60 day raw material safety stocks. Finished products continue to arrive at U.S. hospital loading docks. Downstream health authorities perceive zero immediate threat.',
+          quote: '"Downstream health authorities perceive zero immediate impact, creating a false sense of security." [Section 3.3]',
+          stageName: 'STAGE: BUFFER CLEARING',
+          alertText: 'STATUS: NOMINAL (LATENT UPSTREAM SHOCK)',
+          alertClass: 'bg-slate-900 border-slate-700 text-slate-300',
+          calcBuffer: (day) => Math.round(100 - (day / 60) * 85),
+          calcWholesaler: (day) => Math.round(100 - (day / 60) * 15),
+          calcIcuRisk: (day) => Math.round((day / 60) * 10)
+        },
+        {
+          maxDay: 120,
+          phase: 'Phase 2: Threshold Acceleration Phase (Days 60–120 / M2–M4)',
+          headline: 'Buffer Exhaustion & 300–500% Panic Hoarding Spiral',
+          desc: 'Upstream raw material buffer stocks in India and Europe are fully exhausted. API synthesis halts across major hubs. FDF manufacturers consume their active ingredient stockpiles and cease tableting and vial-filling. Wholesalers experience zero-fill orders. As news of stockouts leaks, hospital systems, retail chains, and government agencies panic-buy, spiking demand to 300–500% of baseline. The system reaches a non-linear tipping point: inventory buffers vanish simultaneously across all tiers.',
+          quote: '"Wholesalers and distributors suddenly experience zero-fill orders... driving demand to 300–500% of baseline. The system reaches a non-linear tipping point: inventory buffers vanish almost simultaneously." [Section 3.3]',
+          stageName: 'STAGE: THRESHOLD ACCELERATION',
+          alertText: 'STATUS: CRITICAL (ZERO-FILL ORDERS & SYSTEMIC HOARDING)',
+          alertClass: 'bg-amber-950/60 border-amber-600 text-amber-300',
+          calcBuffer: (day) => Math.max(0, Math.round(15 - ((day - 60) / 60) * 15)),
+          calcWholesaler: (day) => Math.round(85 - ((day - 60) / 60) * 75),
+          calcIcuRisk: (day) => Math.round(10 + ((day - 60) / 60) * 60)
+        },
+        {
+          maxDay: 180,
+          phase: 'Phase 3: Clinical Collapse Phase (Days 120–180+ / M4–M6+)',
+          headline: 'Severe ICU Stockouts, Forced Rationing & Surgical Shutdowns',
+          desc: 'Wholesaler pipelines are fully dry. Retail pharmacies and intensive care units experience acute stockouts of Norepinephrine, Amoxicillin, and Heparin. Healthcare providers are forced to ration emergency vasopressors, substitute inferior 2nd- or 3rd-line alternative antibiotics, or cancel elective and vascular surgeries requiring heparin anticoagulation. Protamine-reversible cardiac perfusion becomes unavailable.',
+          quote: '"Retail pharmacies and hospital intensive care units face catastrophic stockouts of critical baseline therapeutics (e.g., Norepinephrine, Amoxicillin, Heparin). Healthcare providers are forced to ration supplies, utilize less effective alternatives, or cancel elective surgical procedures." [Section 3.3]',
+          stageName: 'STAGE: CLINICAL COLLAPSE',
+          alertText: 'STATUS: CATASTROPHIC (HOSPITAL ICU RATIONING & SURGERY CANCELLED)',
+          alertClass: 'bg-rose-950/80 border-rose-500 text-rose-300',
+          calcBuffer: () => 0,
+          calcWholesaler: (day) => Math.max(0, Math.round(10 - ((day - 120) / 60) * 10)),
+          calcIcuRisk: (day) => Math.min(100, Math.round(70 + ((day - 120) / 60) * 30))
+        }
+      ];
+
+      // --- 3. EXECUTIVE SLIDE DECK CONTENT (VIEW 3) ---
+      const SLIDES = [
+        {
+          idx: 0,
+          badge: 'EXECUTIVE BRIEFING • SLIDE 1 OF 5',
+          title: 'The Pharma Choke Point: Peacetime Weaponization Doctrine',
+          subtitle: 'Core Strategic Hypothesis & CFR Assessment Methodology',
+          htmlContent: `
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-4">
+              <div class="p-5 rounded-2xl bg-slate-950 border border-slate-800">
+                <div class="flex items-center gap-2 text-rose-400 font-mono font-bold text-xs uppercase mb-2">
+                  <i class="fa-solid fa-bomb"></i> Wartime Disruption (Kinetic)
+                </div>
+                <h4 class="text-white font-bold text-base mb-2">Overt Physical Severance</h4>
+                <p class="text-xs text-slate-300 leading-relaxed">
+                  Kinetic attacks, naval blockades, or total diplomatic embargoes resulting from hot military conflict. Highly visible, illegal under international treaties, and provokes immediate multilateral retaliation.
+                </p>
+                <div class="mt-3 text-[11px] font-mono text-slate-500">Signature: Evident, high-friction, immediate sanctionable trigger.</div>
+              </div>
+
+              <div class="p-5 rounded-2xl bg-rose-950/20 border-2 border-rose-500/50">
+                <div class="flex items-center gap-2 text-rose-400 font-mono font-bold text-xs uppercase mb-2">
+                  <i class="fa-solid fa-virus"></i> Peacetime Weaponization (Asymmetric)
+                </div>
+                <h4 class="text-white font-bold text-base mb-2">Threshold Ambiguity & Plausible Deniability</h4>
+                <p class="text-xs text-slate-200 leading-relaxed">
+                  Leverages upstream chemical concentration through subtle bureaucratic friction: hyper-stringent environmental closures, customs holds, or export quotas disguised as "domestic clinical security."
+                </p>
+                <div class="mt-3 text-[11px] font-mono text-rose-300">Bypasses WTO dispute mechanisms & forces concessions prior to conflict.</div>
+              </div>
+            </div>
+
+            <div class="p-4 rounded-xl bg-slate-950/70 border border-slate-800 text-xs font-mono text-slate-300">
+              <span class="text-amber-400 font-bold">KEY TAKEAWAY:</span> Western biosecurity assessments that focus solely on wartime military supply chains miss the primary geopolitical threat vector: coerced political concessions during nominal peacetime via upstream KSM chokepoints.
+            </div>
+          `,
+          notes: 'Emphasize to executives that peacetime weaponization does not look like an embargo. It masquerades as routine regulatory friction or environmental crackdowns in Chinese chemical parks.'
+        },
+        {
+          idx: 1,
+          badge: 'EXECUTIVE BRIEFING • SLIDE 2 OF 5',
+          title: 'The "N-1 Problem" & The Illusion of Diversification',
+          subtitle: 'Why Downstream Geographic Distribution Fails in Reality',
+          htmlContent: `
+            <div class="space-y-4 my-2">
+              <div class="p-4 rounded-xl bg-slate-950 border border-slate-800">
+                <div class="text-amber-400 font-mono text-xs font-bold uppercase mb-1">
+                  <i class="fa-solid fa-triangle-exclamation mr-1"></i> The Shaanxi / Shandong Paradox
+                </div>
+                <p class="text-xs text-slate-300 leading-relaxed">
+                  If 15 independent generic drug manufacturers located in India, Italy, the United States, and South Korea produce an essential antibiotic API, but <strong>95% of the core KSM</strong> required to synthesize that API originates from two industrial parks in Shaanxi and Shandong provinces, the downstream geographic distribution offers <strong>zero real-world resilience</strong>.
+                </p>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                <div class="p-3.5 rounded-xl bg-slate-950/60 border border-slate-800 text-xs">
+                  <div class="font-mono text-cyan-400 font-bold mb-1">Step N (Finished Form)</div>
+                  <div class="text-white font-semibold mb-1">Distributed Globally</div>
+                  <p class="text-slate-400 text-[11px]">Tablets pressed in US, India, and EU. Registered in FDA registries as non-Chinese origin.</p>
+                </div>
+                <div class="p-3.5 rounded-xl bg-slate-950/60 border border-slate-800 text-xs">
+                  <div class="font-mono text-amber-400 font-bold mb-1">Step N-1 (Active Ingredient)</div>
+                  <div class="text-white font-semibold mb-1">Indian Conversion Hubs</div>
+                  <p class="text-slate-400 text-[11px]">Indian API synthesizers conduct final enzymatic conversion, obscuring upstream sources.</p>
+                </div>
+                <div class="p-3.5 rounded-xl bg-rose-950/40 border border-rose-500/40 text-xs">
+                  <div class="font-mono text-rose-400 font-bold mb-1">Step N-2 (KSM & Feedstock)</div>
+                  <div class="text-white font-semibold mb-1">Monopolized in China</div>
+                  <p class="text-slate-300 text-[11px]">94% of 6-APA, 75% of crude mucosal heparin, and dominant PAP petrochemical synthesis.</p>
+                </div>
+              </div>
+
+              <div class="p-3 rounded-lg bg-amber-950/20 border-l-2 border-amber-500 text-[11px] font-mono text-slate-300 italic">
+                "Country of Origin labeling rules register the goods as origin India or US... blinding the FDA, DLA, and hospital buyers to their absolute dependence on Chinese fermentation vats." [Section 2.1]
+              </div>
+            </div>
+          `,
+          notes: 'Point out the regulatory blind spot: FDA origin labeling rules look only at the site of final chemical transformation or packaging, not the upstream fermentation or KSM source.'
+        },
+        {
+          idx: 2,
+          badge: 'EXECUTIVE BRIEFING • SLIDE 3 OF 5',
+          title: 'Vulnerability Profiles of the 4 Target Medicines',
+          subtitle: 'Granular Breakdown of Upstream Chokepoints & Clinical Severity',
+          htmlContent: `
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 my-2">
+              <div class="p-4 rounded-xl bg-slate-950 border border-slate-800">
+                <div class="flex items-center justify-between mb-1.5">
+                  <span class="text-cyan-400 font-bold text-sm flex items-center gap-1.5"><i class="fa-solid fa-capsules"></i> Amoxicillin</span>
+                  <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-rose-500/10 text-rose-400 font-bold border border-rose-500/30">94% PRC</span>
+                </div>
+                <div class="text-[11px] font-mono text-slate-400 mb-1">KSM: 6-APA (from Penicillin G Fermentation)</div>
+                <p class="text-xs text-slate-300 leading-relaxed">
+                  First-line oral therapy for pediatric otitis media, pneumonia, and combat soft-tissue wound prophylaxis. Controlled by CSPC, Federal Pharma, and Sinopharm.
+                </p>
+              </div>
+
+              <div class="p-4 rounded-xl bg-slate-950 border border-slate-800">
+                <div class="flex items-center justify-between mb-1.5">
+                  <span class="text-cyan-400 font-bold text-sm flex items-center gap-1.5"><i class="fa-solid fa-syringe"></i> Heparin</span>
+                  <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-rose-500/10 text-rose-400 font-bold border border-rose-500/30">75% PRC</span>
+                </div>
+                <div class="text-[11px] font-mono text-slate-400 mb-1">Raw Input: Porcine Intestinal Mucosa (Pig Guts)</div>
+                <p class="text-xs text-slate-300 leading-relaxed">
+                  Mandatory anticoagulant for open-heart surgery, hemodialysis, and ECMO. Irreplaceable due to instant protamine reversal. Threat: African Swine Fever & OSCS adulteration.
+                </p>
+              </div>
+
+              <div class="p-4 rounded-xl bg-slate-950 border border-slate-800">
+                <div class="flex items-center justify-between mb-1.5">
+                  <span class="text-cyan-400 font-bold text-sm flex items-center gap-1.5"><i class="fa-solid fa-heart-pulse"></i> Norepinephrine</span>
+                  <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-amber-500/10 text-amber-400 font-bold border border-amber-500/30">Dual Bottleneck</span>
+                </div>
+                <div class="text-[11px] font-mono text-slate-400 mb-1">Choke: Catecholamines + Sterile Fill-Finish Lines</div>
+                <p class="text-xs text-slate-300 leading-relaxed">
+                  Baseline emergency vasopressor in every ICU and crash cart for septic shock. Aging, disinvested Western aseptic fill-finish lines cause instant clinical shortages.
+                </p>
+              </div>
+
+              <div class="p-4 rounded-xl bg-slate-950 border border-slate-800">
+                <div class="flex items-center justify-between mb-1.5">
+                  <span class="text-cyan-400 font-bold text-sm flex items-center gap-1.5"><i class="fa-solid fa-tablets"></i> Acetaminophen</span>
+                  <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-rose-500/10 text-rose-400 font-bold border border-rose-500/30">Dominant PAP</span>
+                </div>
+                <div class="text-[11px] font-mono text-slate-400 mb-1">KSM: 4-Aminophenol (Petrochemical Derivative)</div>
+                <p class="text-xs text-slate-300 leading-relaxed">
+                  Universal antipyretic in combat pill packs and post-op protocols. Massive consumer OTC volumes bypass prescription provenance disclosures, blinding national risk models.
+                </p>
+              </div>
+            </div>
+          `,
+          notes: 'Highlight that three of these drugs rely on chemical synthesis/fermentation, but Heparin is biologically sourced from half the world swine herd, making it uniquely prone to epizootic collapse.'
+        },
+        {
+          idx: 3,
+          badge: 'EXECUTIVE BRIEFING • SLIDE 4 OF 5',
+          title: 'The Four Weaponization Pathways',
+          subtitle: 'Direct, Indirect, Information, and Quality Coercion Levers',
+          htmlContent: `
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-2">
+              <div class="p-4 rounded-xl bg-slate-950 border border-slate-800">
+                <div class="flex items-center gap-2 text-rose-400 font-mono text-xs font-bold uppercase mb-1">
+                  <i class="fa-solid fa-ban"></i> 1. Direct Restrictions
+                </div>
+                <p class="text-xs text-slate-300 leading-relaxed">
+                  PRC MOFCOM or State Council imposes targeted export licensing, customs holds, or environmental shutdowns on chemical manufacturers shipping APIs/KSMs directly to U.S. firms.
+                </p>
+              </div>
+
+              <div class="p-4 rounded-xl bg-slate-950 border border-slate-800">
+                <div class="flex items-center gap-2 text-rose-400 font-mono text-xs font-bold uppercase mb-1">
+                  <i class="fa-solid fa-arrows-split-up-and-left"></i> 2. Indirect Third-Nation Squeeze
+                </div>
+                <p class="text-xs text-slate-300 leading-relaxed">
+                  Beijing restricts export of 6-APA or PAP to intermediate nations (India, South Korea, EU). Collapses global generic output without leaving a direct bilateral embargo signature.
+                </p>
+              </div>
+
+              <div class="p-4 rounded-xl bg-slate-950 border border-slate-800">
+                <div class="flex items-center gap-2 text-amber-400 font-mono text-xs font-bold uppercase mb-1">
+                  <i class="fa-solid fa-bullhorn"></i> 3. Panic Pull-Forward (Info Ops)
+                </div>
+                <p class="text-xs text-slate-300 leading-relaxed">
+                  Strategic state-media leaks hinting at quota cuts trigger 300–500% panic hoarding by wholesalers, wiping out global safety inventories months before physical curtailments take effect.
+                </p>
+              </div>
+
+              <div class="p-4 rounded-xl bg-slate-950 border border-slate-800">
+                <div class="flex items-center gap-2 text-amber-400 font-mono text-xs font-bold uppercase mb-1">
+                  <i class="fa-solid fa-triangle-exclamation"></i> 4. Deniable Quality Degradation
+                </div>
+                <p class="text-xs text-slate-300 leading-relaxed">
+                  Allowing subtle contaminants or sub-potent batches into export lots forces the U.S. FDA to issue import alerts and mandatory recalls, shifting perceived blame onto U.S. regulators.
+                </p>
+              </div>
+            </div>
+
+            <div class="p-3 rounded-lg bg-slate-950 border border-slate-800 text-[11px] font-mono text-slate-400">
+              <span class="text-rose-400 font-bold">TACTICAL ATTRIBUTION PROBLEM:</span> None of these four pathways triggers immediate WTO violations or standard defense pact activations.
+            </div>
+          `,
+          notes: 'Explain that Third-Nation Squeezing (attacking India’s 6-APA supply) allows China to cripple US antibiotic supplies while claiming standard internal regulatory compliance.'
+        },
+        {
+          idx: 4,
+          badge: 'EXECUTIVE BRIEFING • SLIDE 5 OF 5',
+          title: 'Strategic Countermeasures & Policy Traps',
+          subtitle: 'Evaluating SAPIR Reserves, AMTs, and Avoiding Tariff Disasters',
+          htmlContent: `
+            <div class="space-y-4 my-2">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="p-4 rounded-xl bg-slate-950 border border-slate-800">
+                  <div class="text-emerald-400 font-mono text-xs font-bold uppercase mb-1">
+                    <i class="fa-solid fa-check-double mr-1"></i> Near-Term: SAPIR & Allied Blocs (1-2 Yrs)
+                  </div>
+                  <ul class="text-xs text-slate-300 space-y-1.5 list-disc pl-4">
+                    <li><strong>SAPIR:</strong> Physical national stockpile of high-density KSMs (6-APA, PAP, crude mucosa) with continuous commercial life-cycle rotation.</li>
+                    <li><strong>Allied Blocs:</strong> Biopharmaceutical Alliance with Japan, Korea, India, EU for mutual inspections and joint emergency pooling.</li>
+                  </ul>
+                </div>
+
+                <div class="p-4 rounded-xl bg-slate-950 border border-slate-800">
+                  <div class="text-cyan-400 font-mono text-xs font-bold uppercase mb-1">
+                    <i class="fa-solid fa-microchip mr-1"></i> Long-Term: AMTs & Reimbursement (3-5+ Yrs)
+                  </div>
+                  <ul class="text-xs text-slate-300 space-y-1.5 list-disc pl-4">
+                    <li><strong>Continuous Flow AMTs:</strong> Shrinks physical footprint, slashes hazardous waste 80–90%, and beats Chinese batch cost-parity.</li>
+                    <li><strong>Medicare Reforms:</strong> Guaranteed premium reimbursement for domestic/allied KSMs to break "lowest-cost-wins" market failure.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Warning Box from Page 7 -->
+              <div class="p-4 rounded-xl bg-rose-950/30 border border-rose-500/40 text-xs">
+                <div class="flex items-center gap-2 text-rose-400 font-mono font-bold uppercase mb-1">
+                  <i class="fa-solid fa-triangle-exclamation"></i> Critical Warning: The Peril of Blanket Tariffs
+                </div>
+                <p class="text-slate-300 leading-relaxed">
+                  Imposing punitive tariffs on Chinese generic APIs or KSMs before alternative allied capacity is operational acts as a <strong>self-inflicted supply shock</strong>. Generic manufacturers operate on razor-thin margins and will exit the market, triggering immediate catastrophic domestic drug shortages.
+                </p>
+              </div>
+            </div>
+          `,
+          notes: 'Make sure the committee understands why blanket tariffs on off-patent generic APIs are fatal: generic makers cannot absorb 25% tariffs on 0.5-cent margins and will simply discontinue the drug.'
+        }
+      ];
+
+      // --- 4. RESHORING ROADMAP DATA (VIEW 4) ---
+      const RESHORING_PHASES = {
+        1: {
+          phaseNum: 1,
+          badge: 'PHASE 1 (YEARS 1–3) • REGULATORY VISIBILITY',
+          title: 'Mandatory Country-of-Origin Labeling (COOL) & Provenance Audits',
+          lead: 'FDA / CMS / USTR',
+          hurdles: [
+            '<strong>Generic Lobby Resistance:</strong> Wholesale distributors and generic manufacturers oppose labeling costs and fear consumer pushback against offshore sourcing.',
+            '<strong>OTC Reporting Blind Spots:</strong> Existing statutory frameworks segregate Over-the-Counter medicines from strict pedigree reporting, requiring formal congressional amendments.',
+            '<strong>Global Traceability Infrastructure:</strong> Verifying chemical provenance through complex re-packaging brokers in intermediate hubs (Singapore, Switzerland) requires new customs registries.'
+          ],
+          risks: [
+            '<strong>Targeted Bureaucratic Slowdowns:</strong> Chinese customs authorities may enact retaliatory inspection audits on outbound batches destined for U.S. firms.',
+            '<strong>Information Obfuscation:</strong> Chinese suppliers can route precursor shipments through unlisted third-party chemical shell corporations in Southeast Asia.',
+            '<strong>Price Spikes on Traceable Lots:</strong> Immediate market price segmentation where secure, origin-verified batches command acute price spikes before capacity expands.'
+          ]
+        },
+        2: {
+          phaseNum: 2,
+          badge: 'PHASE 2 (YEARS 1–2) • NEAR-TERM BUFFERING',
+          title: 'Strategic API Reserve (SAPIR) & Plurilateral Allied Medicine Blocs',
+          lead: 'HHS / ASPR / DLA / State Dept / USTR',
+          hurdles: [
+            '<strong>Chemical Shelf-Life Degradation:</strong> Unlike metals in strategic reserves, APIs and KSMs chemically degrade over 24-48 months. Requires an active life-cycle rotation program continuously cycling stock into commercial channels.',
+            '<strong>High Initial Capital Outlay:</strong> Procuring 6 to 12 months of national KSM reserves requires significant upfront appropriations through BARDA and ASPR.',
+            '<strong>Sovereignty & Triage in Allied Blocs:</strong> Multilateral treaties with India, EU, and Japan require binding rules on priority allocation during simultaneous global stockouts.'
+          ],
+          risks: [
+            '<strong>Preemptive Chinese Export Curtailment:</strong> If Beijing detects massive U.S. government stockpile procurement, it may tighten export quotas early to prevent reserve establishment.',
+            '<strong>Diplomatic Wedge Driving:</strong> China can offer preferential supply terms to select European or Asian allies to divide the plurilateral coalition.',
+            '<strong>Market Distortion & Spot Market Hoarding:</strong> Large-scale sovereign procurement may inadvertently trigger temporary commercial price inflation for private health systems.'
+          ]
+        },
+        3: {
+          phaseNum: 3,
+          badge: 'PHASE 3 (YEARS 3–5+) • STRUCTURAL COST PARITY',
+          title: 'Advanced Manufacturing Technologies (AMTs) & Medicare Reimbursement Reforms',
+          lead: 'BARDA / DOD / NSF / CMS',
+          hurdles: [
+            '<strong>Capital Replacement Costs:</strong> Transitioning from legacy batch synthesis to continuous flow synthesis and enzymatic green chemistry requires deep capital grants.',
+            '<strong>Regulatory Validation Timelines:</strong> FDA cGMP validation for novel continuous flow lines is lengthy, requiring expedited review pathways under BARDA/FDA frameworks.',
+            '<strong>Procurement Cost Increases:</strong> Premium reimbursement formulas under Medicare Parts B and C require public acceptance of higher healthcare spending as a national security insurance premium.'
+          ],
+          risks: [
+            '<strong>PRC Predatory Dumping:</strong> Subsidized Chinese state champions may slash spot prices by 60–80% to bankrupt nascent Western continuous flow plants before they reach scale.',
+            '<strong>Overcapacity Lock-in Risk:</strong> Western governments subsidizing legacy batch synthesis plants risk building economically unviable facilities obsolete upon continuous flow maturation.',
+            '<strong>Accelerating Chinese Biologic Substitution:</strong> Squeezing commodity chemicals accelerates China’s transition into high-margin specialty biologics and biosimilar dominance.'
+          ]
+        }
+      };
+
+      // --- 5. APPLICATION STATE MANAGEMENT ---
+      let currentView = 'mindmap';
+      let currentSlideIdx = 0;
+      let isTimelinePlaying = false;
+      let timelineInterval = null;
+      let ksmChart = null;
+      let radarChart = null;
+      let mermaidInitialized = false;
+
+      // --- 6. VIEW SWITCHER ---
+      function switchView(viewName) {
+        currentView = viewName;
+
+        // Hide all views
+        document.querySelectorAll('.view-panel').forEach(el => el.classList.add('hidden'));
+
+        // Reset nav styles
+        document.querySelectorAll('.nav-item').forEach(el => {
+          el.classList.remove('bg-slate-800', 'text-white', 'border-l-4', 'border-rose-500');
+          el.classList.add('text-slate-300');
+        });
+
+        // Show selected view
+        const targetView = document.getElementById('view-' + viewName);
+        if (targetView) targetView.classList.remove('hidden');
+
+        // Highlight active nav button
+        const activeBtn = document.getElementById('nav-btn-' + viewName);
+        if (activeBtn) {
+          activeBtn.classList.add('bg-slate-800', 'text-white', 'border-l-4', 'border-rose-500');
+          activeBtn.classList.remove('text-slate-300');
+        }
+
+        // Update Top Bar Badge
+        const badge = document.getElementById('current-view-badge');
+        if (viewName === 'mindmap') badge.innerText = 'VIEW 1: RISK ECOSYSTEM MIND MAP';
+        if (viewName === 'dashboard') badge.innerText = 'VIEW 2: GEOPOLITICAL RISK DASHBOARD';
+        if (viewName === 'slidedeck') badge.innerText = 'VIEW 3: EXECUTIVE BRIEFING SLIDE DECK';
+        if (viewName === 'reshoring') badge.innerText = 'VIEW 4: RESHORING POLICY ROADMAP';
+
+        // Lazy initialize charts / components
+        if (viewName === 'dashboard') {
+          setTimeout(() => {
+            initChartsIfNeeded();
+            if (ksmChart) ksmChart.resize();
+            if (radarChart) radarChart.resize();
+          }, 80);
+        }
+        if (viewName === 'slidedeck') {
+          renderCurrentSlide();
+        }
+        if (viewName === 'mindmap') {
+          setTimeout(attachMindmapClickHandlers, 150);
+        }
+        if (viewName === 'reshoring') {
+          setTimeout(renderWorkflowMermaidIfNeeded, 100);
+        }
+      }
+
+      // Re-render and bind workflow diagram if needed
+      let workflowRendered = false;
+      function renderWorkflowMermaidIfNeeded() {
+        const container = document.getElementById('workflow-mermaid');
+        if (!container) return;
+        if (!workflowRendered && window.mermaid) {
+          try {
+            mermaid.run({ nodes: [container] }).then(() => {
+              workflowRendered = true;
+              attachWorkflowClickHandlers();
+            }).catch(e => console.warn('Mermaid workflow render:', e));
+          } catch(err) {
+            console.warn(err);
+          }
+        } else {
+          attachWorkflowClickHandlers();
+        }
+      }
+
+      function attachWorkflowClickHandlers() {
+        const svg = document.querySelector('#workflow-mermaid svg');
+        if (!svg) return;
+        const nodes = svg.querySelectorAll('.node, .cluster');
+        nodes.forEach(el => {
+          el.style.cursor = 'pointer';
+          el.onclick = () => {
+            const text = el.textContent || '';
+            if (text.includes('Phase 1') || text.includes('COOL') || text.includes('OTC')) selectWorkflowPhase(1);
+            else if (text.includes('Phase 2') || text.includes('SAPIR') || text.includes('Allied')) selectWorkflowPhase(2);
+            else if (text.includes('Phase 3') || text.includes('Manufacturing') || text.includes('Medicare')) selectWorkflowPhase(3);
+          };
+        });
+      }
+
+      function attachMindmapClickHandlers() {
+        const svg = document.querySelector('#mindmap-mermaid svg');
+        if (!svg) return;
+        const nodeElements = svg.querySelectorAll('.node');
+        nodeElements.forEach(nodeEl => {
+          nodeEl.style.cursor = 'pointer';
+          nodeEl.onclick = () => {
+            const text = nodeEl.textContent || '';
+            if (text.includes('Amoxicillin')) selectNode('amox');
+            else if (text.includes('6-APA')) selectNode('apa6');
+            else if (text.includes('Heparin')) selectNode('heparin');
+            else if (text.includes('Porcine Mucosa')) selectNode('mucosa');
+            else if (text.includes('Norepinephrine')) selectNode('norepi');
+            else if (text.includes('Aseptic') || text.includes('Fill-Finish')) selectNode('fillfinish');
+            else if (text.includes('Acetaminophen')) selectNode('acet');
+            else if (text.includes('4-Aminophenol') || text.includes('PAP')) selectNode('pap');
+            else if (text.includes('Structural Market') || text.includes('Drivers') || text.includes('Hatch-Waxman') || text.includes('GPO')) selectNode('drivers');
+            else if (text.includes('Geopolitical Choke') || text.includes('MOFCOM') || text.includes('Panic') || text.includes('Quality')) selectNode('chokepoints');
+            else selectNode('hub');
+          };
+        });
+      }
+
+      // --- 7. MIND MAP NODE SELECTION LOGIC ---
+      function selectNode(nodeKey) {
+        const node = INTEL_NODES[nodeKey] || INTEL_NODES.hub;
+
+        // Update side panel contents
+        document.getElementById('node-badge').innerText = node.badge;
+        document.getElementById('node-badge').className = `px-2 py-0.5 text-[10px] font-mono font-bold tracking-wider rounded uppercase border ${node.badgeClass}`;
+        document.getElementById('node-id-tag').innerText = `ID: ${node.id}`;
+        document.getElementById('node-title').innerText = node.title;
+        document.getElementById('node-subtitle').innerText = node.subtitle;
+        document.getElementById('node-metric-val').innerText = node.metricVal;
+        document.getElementById('node-metric-val').className = `text-lg font-bold font-mono ${node.metricClass}`;
+        document.getElementById('node-metric-icon').innerHTML = `<i class="fa-solid ${node.metricIcon}"></i>`;
+        document.getElementById('node-summary').innerText = node.summary;
+        document.getElementById('node-quote').innerText = node.quote;
+
+        // Tags
+        const tagsContainer = document.getElementById('node-tags');
+        tagsContainer.innerHTML = '';
+        node.tags.forEach(tag => {
+          const span = document.createElement('span');
+          span.className = 'px-2 py-0.5 rounded text-[10px] font-mono bg-slate-800 text-slate-300 border border-slate-700/60';
+          span.innerText = tag;
+          tagsContainer.appendChild(span);
+        });
+
+        // Flash side panel container for visual feedback
+        const inspector = document.getElementById('mindmap-inspector');
+        inspector.classList.add('ring-2', 'ring-rose-500/50');
+        setTimeout(() => inspector.classList.remove('ring-2', 'ring-rose-500/50'), 600);
+      }
+
+      function filterMindmapCategory(cat) {
+        document.querySelectorAll('.mindmap-filter-btn').forEach(btn => {
+          if (btn.dataset.cat === cat) {
+            btn.classList.add('bg-rose-600', 'text-white', 'border-rose-500');
+            btn.classList.remove('bg-slate-800', 'text-slate-300');
+          } else {
+            btn.classList.remove('bg-rose-600', 'text-white', 'border-rose-500');
+            btn.classList.add('bg-slate-800', 'text-slate-300');
+          }
+        });
+
+        if (cat === 'drivers') selectNode('drivers');
+        else if (cat === 'medicines') selectNode('amox');
+        else if (cat === 'chokepoints') selectNode('chokepoints');
+        else selectNode('hub');
+      }
+
+      // --- 8. CHART.JS CHARTS INITIALIZATION (VIEW 2) ---
+      function initChartsIfNeeded() {
+        // Chart 1: Bar Chart (China's Market Share of Raw Inputs/KSMs)
+        const ctxKsm = document.getElementById('ksmShareChart');
+        if (ctxKsm && !ksmChart) {
+          ksmChart = new Chart(ctxKsm, {
+            type: 'bar',
+            data: {
+              labels: [
+                'Amoxicillin (6-APA)',
+                'Heparin (Crude Mucosa)',
+                'Norepinephrine (Precursors)',
+                'Acetaminophen (PAP Petrochem)'
+              ],
+              datasets: [
+                {
+                  label: 'China (PRC) Controlled Share (%)',
+                  data: [94, 75, 82, 88],
+                  backgroundColor: 'rgba(244, 63, 94, 0.85)', // Rose-500
+                  borderColor: '#f43f5e',
+                  borderWidth: 1.5,
+                  borderRadius: 6
+                },
+                {
+                  label: 'India / Intermediate Transshipment (%)',
+                  data: [6, 22, 15, 10],
+                  backgroundColor: 'rgba(245, 158, 11, 0.75)', // Amber-500
+                  borderColor: '#f59e0b',
+                  borderWidth: 1.5,
+                  borderRadius: 6
+                },
+                {
+                  label: 'U.S. Domestic Synthesis (%)',
+                  data: [0, 3, 3, 2],
+                  backgroundColor: 'rgba(16, 185, 129, 0.85)', // Emerald-500
+                  borderColor: '#10b981',
+                  borderWidth: 1.5,
+                  borderRadius: 6
+                }
+              ]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: {
+                legend: {
+                  position: 'top',
+                  labels: {
+                    color: '#94a3b8',
+                    font: { family: 'Plus Jakarta Sans', size: 11 }
+                  }
+                },
+                tooltip: {
+                  backgroundColor: '#0f172a',
+                  titleColor: '#f8fafc',
+                  bodyColor: '#cbd5e1',
+                  borderColor: '#334155',
+                  borderWidth: 1,
+                  callbacks: {
+                    label: function(context) {
+                      return `${context.dataset.label}: ${context.raw}%`;
+                    }
+                  }
+                }
+              },
+              scales: {
+                y: {
+                  beginAtZero: true,
+                  max: 100,
+                  ticks: {
+                    color: '#64748b',
+                    callback: (value) => value + '%'
+                  },
+                  grid: {
+                    color: '#1e293b'
+                  }
+                },
+                x: {
+                  ticks: {
+                    color: '#cbd5e1',
+                    font: { family: 'Plus Jakarta Sans', size: 10, weight: 600 }
+                  },
+                  grid: {
+                    display: false
+                  }
+                }
+              }
+            }
+          });
+        }
+
+        // Chart 2: Radar Chart (Supply Chain Vulnerability Index)
+        const ctxRadar = document.getElementById('vulnerabilityRadarChart');
+        if (ctxRadar && !radarChart) {
+          radarChart = new Chart(ctxRadar, {
+            type: 'radar',
+            data: {
+              labels: [
+                'Upstream Concentration',
+                'Lack of Domestic Subs',
+                'Regulatory Blind Spots',
+                'Transshipment Opacity',
+                'Fill-Finish Fragility'
+              ],
+              datasets: [
+                {
+                  label: 'Amoxicillin',
+                  data: [96, 92, 85, 95, 60],
+                  borderColor: '#38bdf8', // Cyan
+                  backgroundColor: 'rgba(56, 189, 248, 0.15)',
+                  pointBackgroundColor: '#38bdf8',
+                  borderWidth: 2
+                },
+                {
+                  label: 'Heparin',
+                  data: [90, 98, 92, 88, 75],
+                  borderColor: '#f43f5e', // Crimson
+                  backgroundColor: 'rgba(244, 63, 94, 0.15)',
+                  pointBackgroundColor: '#f43f5e',
+                  borderWidth: 2
+                },
+                {
+                  label: 'Norepinephrine',
+                  data: [85, 88, 78, 82, 98],
+                  borderColor: '#f59e0b', // Gold
+                  backgroundColor: 'rgba(245, 158, 11, 0.15)',
+                  pointBackgroundColor: '#f59e0b',
+                  borderWidth: 2
+                },
+                {
+                  label: 'Acetaminophen',
+                  data: [92, 80, 95, 75, 40],
+                  borderColor: '#a855f7', // Purple
+                  backgroundColor: 'rgba(168, 85, 247, 0.15)',
+                  pointBackgroundColor: '#a855f7',
+                  borderWidth: 2
+                }
+              ]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: {
+                legend: {
+                  position: 'bottom',
+                  labels: {
+                    color: '#94a3b8',
+                    font: { family: 'Plus Jakarta Sans', size: 10 }
+                  }
+                },
+                tooltip: {
+                  backgroundColor: '#0f172a',
+                  titleColor: '#f8fafc',
+                  bodyColor: '#cbd5e1',
+                  borderColor: '#334155',
+                  borderWidth: 1
+                }
+              },
+              scales: {
+                r: {
+                  angleLines: { color: '#1e293b' },
+                  grid: { color: '#1e293b' },
+                  pointLabels: {
+                    color: '#94a3b8',
+                    font: { family: 'Plus Jakarta Sans', size: 10 }
+                  },
+                  ticks: {
+                    display: false,
+                    max: 100,
+                    min: 0
+                  }
+                }
+              }
+            }
+          });
+        }
+      }
+
+      // --- 9. TIMELINE SIMULATOR LOGIC (VIEW 2) ---
+      function updateTimelineSimulation(val) {
+        const day = parseInt(val, 10);
+        const months = (day / 30).toFixed(1);
+
+        document.getElementById('sim-day-label').innerText = `Day ${day} (Month ${months})`;
+        document.getElementById('gauge-timestamp').innerText = `T+${day} DAYS`;
+
+        // Determine phase
+        let stage = TIMELINE_STAGES[0];
+        if (day > 60 && day <= 120) stage = TIMELINE_STAGES[1];
+        else if (day > 120) stage = TIMELINE_STAGES[2];
+
+        document.getElementById('sim-phase-badge').innerText = stage.phase.split('(')[0];
+        document.getElementById('sim-stage-indicator').innerText = stage.stageName;
+        document.getElementById('sim-headline').innerText = stage.headline;
+        document.getElementById('sim-description').innerText = stage.desc;
+        document.getElementById('sim-report-quote').innerText = stage.quote;
+
+        // Calculate Gauges
+        const bufferVal = stage.calcBuffer(day);
+        const wholesalerVal = stage.calcWholesaler(day);
+        const icuVal = stage.calcIcuRisk(day);
+
+        // Update Gauge 1: Buffer
+        document.getElementById('gauge-buffer-text').innerText = `${bufferVal}% (${Math.round(bufferVal * 0.6)} Days Supply)`;
+        document.getElementById('gauge-buffer-bar').style.width = `${bufferVal}%`;
+        document.getElementById('gauge-buffer-bar').className = bufferVal < 20 ? 'bg-rose-500 h-2 rounded-full' : 'bg-amber-400 h-2 rounded-full';
+
+        // Update Gauge 2: Wholesaler
+        document.getElementById('gauge-wholesaler-text').innerText = `${wholesalerVal}% (${wholesalerVal < 30 ? 'Zero-Fill Orders' : 'Normal Flow'})`;
+        document.getElementById('gauge-wholesaler-bar').style.width = `${wholesalerVal}%`;
+        document.getElementById('gauge-wholesaler-bar').className = wholesalerVal < 30 ? 'bg-rose-500 h-2 rounded-full' : 'bg-cyan-400 h-2 rounded-full';
+
+        // Update Gauge 3: ICU Stockout Risk
+        document.getElementById('gauge-icu-text').innerText = `${icuVal}% (${icuVal > 70 ? 'Catastrophic Shortage' : (icuVal > 25 ? 'High Risk' : 'Nominal')})`;
+        document.getElementById('gauge-icu-bar').style.width = `${icuVal}%`;
+        document.getElementById('gauge-icu-bar').className = icuVal > 70 ? 'bg-rose-500 h-2 rounded-full' : (icuVal > 25 ? 'bg-amber-400 h-2 rounded-full' : 'bg-emerald-500 h-2 rounded-full');
+
+        // Alert Box
+        const alertBox = document.getElementById('gauge-alert-box');
+        alertBox.innerText = stage.alertText;
+        alertBox.className = `p-2.5 rounded-lg border text-center font-bold text-xs ${stage.alertClass}`;
+      }
+
+      function jumpToDay(day) {
+        const slider = document.getElementById('timelineSlider');
+        slider.value = day;
+        updateTimelineSimulation(day);
+      }
+
+      function toggleTimelinePlay() {
+        if (isTimelinePlaying) {
+          clearInterval(timelineInterval);
+          isTimelinePlaying = false;
+          document.getElementById('play-icon').className = 'fa-solid fa-play';
+          document.getElementById('play-text').innerText = 'Auto Play Run';
+        } else {
+          isTimelinePlaying = true;
+          document.getElementById('play-icon').className = 'fa-solid fa-pause';
+          document.getElementById('play-text').innerText = 'Pause Run';
+          const slider = document.getElementById('timelineSlider');
+          if (parseInt(slider.value, 10) >= 180) slider.value = 0;
+
+          timelineInterval = setInterval(() => {
+            let cur = parseInt(slider.value, 10);
+            if (cur >= 180) {
+              clearInterval(timelineInterval);
+              isTimelinePlaying = false;
+              document.getElementById('play-icon').className = 'fa-solid fa-play';
+              document.getElementById('play-text').innerText = 'Replay Run';
+              return;
+            }
+            slider.value = cur + 2;
+            updateTimelineSimulation(slider.value);
+          }, 150);
+        }
+      }
+
+      function resetTimeline() {
+        if (isTimelinePlaying) toggleTimelinePlay();
+        jumpToDay(0);
+      }
+
+      // --- 10. EXECUTIVE SLIDE DECK LOGIC (VIEW 3) ---
+      function renderCurrentSlide() {
+        const slide = SLIDES[currentSlideIdx];
+        const stage = document.getElementById('slide-stage');
+        document.getElementById('deck-counter').innerText = `Slide ${currentSlideIdx + 1} of ${SLIDES.length}`;
+
+        stage.innerHTML = `
+          <div>
+            <div class="flex items-center gap-2 mb-2">
+              <span class="px-2.5 py-0.5 text-[11px] font-mono font-bold bg-amber-500/10 text-amber-400 border border-amber-500/30 rounded uppercase">
+                ${slide.badge}
+              </span>
+            </div>
+            <h3 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">${slide.title}</h3>
+            <p class="text-sm text-slate-400 font-mono mt-1">${slide.subtitle}</p>
+          </div>
+          <div>
+            ${slide.htmlContent}
+          </div>
+        `;
+
+        document.getElementById('slide-analyst-notes').innerText = slide.notes;
+
+        // Update Thumbnails
+        document.querySelectorAll('.slide-thumb').forEach((thumb, idx) => {
+          if (idx === currentSlideIdx) {
+            thumb.className = 'slide-thumb p-2.5 rounded-xl border text-left transition-all active-thumb bg-slate-900 border-amber-500/80 shadow-md shadow-amber-950/30';
+            thumb.querySelector('div:first-child').className = 'text-[10px] font-mono font-bold text-amber-400';
+          } else {
+            thumb.className = 'slide-thumb p-2.5 rounded-xl border text-left transition-all bg-slate-900/60 border-slate-800 hover:border-slate-700';
+            thumb.querySelector('div:first-child').className = 'text-[10px] font-mono font-bold text-slate-500';
+          }
+        });
+      }
+
+      function nextSlide() {
+        if (currentSlideIdx < SLIDES.length - 1) {
+          currentSlideIdx++;
+          renderCurrentSlide();
+        }
+      }
+
+      function prevSlide() {
+        if (currentSlideIdx > 0) {
+          currentSlideIdx--;
+          renderCurrentSlide();
+        }
+      }
+
+      function goToSlide(idx) {
+        currentSlideIdx = idx;
+        renderCurrentSlide();
+      }
+
+      function toggleSlideNotes() {
+        const drawer = document.getElementById('analyst-notes-drawer');
+        drawer.classList.toggle('hidden');
+      }
+
+      // Keyboard controls for slides
+      window.addEventListener('keydown', (e) => {
+        if (currentView === 'slidedeck') {
+          if (e.key === 'ArrowRight' || e.key === 'PageDown') nextSlide();
+          if (e.key === 'ArrowLeft' || e.key === 'PageUp') prevSlide();
+        }
+        if (e.key === 'k' && (e.metaKey || e.ctrlKey)) {
+          e.preventDefault();
+          toggleQuickSearch();
+        }
+        if (e.key === 'Escape') {
+          closeBriefingModal();
+          const searchModal = document.getElementById('quickSearchModal');
+          if (!searchModal.classList.contains('hidden')) toggleQuickSearch();
+        }
+      });
+
+      // --- 11. RESHORING POLICY WORKFLOW LOGIC (VIEW 4) ---
+      function selectWorkflowPhase(phaseNum) {
+        const data = RESHORING_PHASES[phaseNum];
+        if (!data) return;
+
+        // Update Phase cards styling
+        document.querySelectorAll('.phase-card').forEach(card => {
+          const p = parseInt(card.dataset.phase, 10);
+          if (p === phaseNum) {
+            card.className = 'phase-card cursor-pointer p-5 rounded-2xl border transition-all duration-200 bg-slate-900 border-emerald-500/80 shadow-lg shadow-emerald-950/40';
+            card.querySelector('span:last-child').className = 'text-emerald-400 font-semibold';
+            card.querySelector('span:last-child').innerText = 'Active Selection';
+          } else {
+            card.className = 'phase-card cursor-pointer p-5 rounded-2xl border transition-all duration-200 bg-slate-900/60 border-slate-800 hover:border-slate-700';
+            card.querySelector('span:last-child').className = 'text-slate-500';
+            card.querySelector('span:last-child').innerText = 'Click to Inspect';
+          }
+        });
+
+        // Update comparison drawer
+        document.getElementById('panel-phase-badge').innerText = data.badge;
+        document.getElementById('panel-phase-title').innerText = data.title;
+        document.getElementById('panel-phase-lead').innerHTML = `Lead Oversight Agencies: <span class="text-slate-200 font-semibold">${data.lead}</span>`;
+
+        // Populate Hurdles
+        const hurdlesList = document.getElementById('panel-hurdles-list');
+        hurdlesList.innerHTML = '';
+        data.hurdles.forEach(item => {
+          const li = document.createElement('li');
+          li.className = 'border-l-2 border-amber-500/60 pl-2.5 py-1';
+          li.innerHTML = item;
+          hurdlesList.appendChild(li);
+        });
+
+        // Populate Retaliatory Risks
+        const risksList = document.getElementById('panel-risks-list');
+        risksList.innerHTML = '';
+        data.risks.forEach(item => {
+          const li = document.createElement('li');
+          li.className = 'border-l-2 border-rose-500/60 pl-2.5 py-1';
+          li.innerHTML = item;
+          risksList.appendChild(li);
+        });
+
+        // Visual flash feedback
+        const panel = document.getElementById('workflow-comparison-panel');
+        panel.classList.add('ring-2', 'ring-emerald-500/40');
+        setTimeout(() => panel.classList.remove('ring-2', 'ring-emerald-500/40'), 500);
+      }
+
+      // --- 12. SEARCH MODAL LOGIC ---
+      function toggleQuickSearch() {
+        const modal = document.getElementById('quickSearchModal');
+        modal.classList.toggle('hidden');
+        if (!modal.classList.contains('hidden')) {
+          const input = document.getElementById('searchInput');
+          input.value = '';
+          handleSearch('');
+          setTimeout(() => input.focus(), 50);
+        }
+      }
+
+      function handleSearch(query) {
+        const q = query.toLowerCase().trim();
+        const container = document.getElementById('searchResultsContainer');
+        container.innerHTML = '';
+
+        const keys = Object.keys(INTEL_NODES);
+        const matches = keys.filter(k => {
+          const n = INTEL_NODES[k];
+          return (
+            n.title.toLowerCase().includes(q) ||
+            n.subtitle.toLowerCase().includes(q) ||
+            n.summary.toLowerCase().includes(q) ||
+            n.tags.some(t => t.toLowerCase().includes(q))
+          );
+        });
+
+        if (matches.length === 0) {
+          container.innerHTML = '<div class="p-4 text-center text-xs text-slate-500 font-mono">No matching dossier nodes found</div>';
+          return;
+        }
+
+        matches.forEach(k => {
+          const node = INTEL_NODES[k];
+          const div = document.createElement('div');
+          div.className = 'p-2.5 rounded-xl hover:bg-slate-800 cursor-pointer flex items-center justify-between text-xs transition-colors border border-transparent hover:border-slate-700';
+          div.onclick = () => {
+            toggleQuickSearch();
+            switchView('mindmap');
+            selectNode(k);
+          };
+          div.innerHTML = `
+            <div>
+              <div class="font-bold text-white flex items-center gap-2">
+                <span>${node.title}</span>
+                <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-slate-950 text-slate-400">${node.id}</span>
+              </div>
+              <div class="text-[11px] text-slate-400">${node.subtitle}</div>
+            </div>
+            <span class="text-xs font-mono text-rose-400 font-semibold">${node.metricVal.split(' ')[0]}</span>
+          `;
+          container.appendChild(div);
+        });
+      }
+
+      // --- 13. EXECUTIVE DOSSIER MODAL ---
+      function openBriefingModal() {
+        document.getElementById('briefingModal').classList.remove('hidden');
+      }
+      function closeBriefingModal() {
+        document.getElementById('briefingModal').classList.add('hidden');
+      }
+
+      // --- 14. INITIALIZATION ---
+      window.addEventListener('DOMContentLoaded', () => {
+        // Initialize Mermaid
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'dark',
+          themeVariables: {
+            darkMode: true,
+            background: '#030712',
+            primaryColor: '#1e293b',
+            primaryBorderColor: '#38bdf8',
+            primaryTextColor: '#f8fafc',
+            lineColor: '#64748b',
+            fontSize: '12px'
+          },
+          securityLevel: 'loose'
+        });
+
+        // Attach SVG click handlers for Mermaid nodes
+        setTimeout(() => {
+          const svg = document.querySelector('#mindmap-mermaid svg');
+          if (svg) {
+            // Map text / labels to node keys
+            const nodeElements = svg.querySelectorAll('.node');
+            nodeElements.forEach(nodeEl => {
+              nodeEl.addEventListener('click', (e) => {
+                const text = nodeEl.textContent || '';
+                if (text.includes('Amoxicillin')) selectNode('amox');
+                else if (text.includes('6-APA')) selectNode('apa6');
+                else if (text.includes('Heparin')) selectNode('heparin');
+                else if (text.includes('Porcine Mucosa')) selectNode('mucosa');
+                else if (text.includes('Norepinephrine')) selectNode('norepi');
+                else if (text.includes('Aseptic')) selectNode('fillfinish');
+                else if (text.includes('Acetaminophen')) selectNode('acet');
+                else if (text.includes('4-Aminophenol')) selectNode('pap');
+                else if (text.includes('Structural Market')) selectNode('drivers');
+                else if (text.includes('Geopolitical Choke')) selectNode('chokepoints');
+                else selectNode('hub');
+              });
+            });
+          }
+        }, 800);
+
+        // Initial view setup
+        selectNode('hub');
+        selectWorkflowPhase(1);
+        updateTimelineSimulation(0);
+        renderCurrentSlide();
+      });
+    </script>
+
+    <!-- Keep clean Vite compatibility entry for React/build checks -->
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

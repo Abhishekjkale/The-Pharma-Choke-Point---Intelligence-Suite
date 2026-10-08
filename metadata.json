@@ -1,0 +1,6 @@
+{
+  "name": "The Pharma Choke Point - Intelligence Suite",
+  "description": "Interactive biosecurity and pharmaceutical supply chain intelligence suite analyzing U.S.-China interdependence, upstream vulnerabilities, and reshoring pathways.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
